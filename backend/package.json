@@ -1,9 +1,14 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "app.js",
-  "dependencies": {}
-  // Archivo package.json para gestionar las dependencias del contenedor Backend
-  // Implementar Codigo
+  "description": "API REST para gestionar productos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
 }
 
