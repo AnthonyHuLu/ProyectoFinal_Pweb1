@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P  gina Principal</title>
+    <title>Pàgina Principal</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Men   Superior -->
+    <!-- Menù Superior -->
     <nav>
         <ul class="menu">
-            <li class="left"><a href="index.html">Volver al Inicio</a></li>
+            <li class="right"><a href="iniciar_sesion.html">Contàctanos</a></li>
+            <li class="right"><a href="iniciar_sesion.html">Iniciar Sesiòn</a></li>
             <li class="right"><a href="productos.html">Ver Productos</a></li>
-<li class="right"><a href="index.html">Ver foro</a></li>
-            <li class="right"><a href="iniciar_sesion.html">Iniciar Sesi  n</a></li>
+            <li class="right"><a href="index.html">Ver foro</a></li>
         </ul>
     </nav>
 
-    <!-- Presentaci  n de Diapositivas -->
+    <!-- Presentaciòn de Diapositivas -->
     <div class="slideshow-container">
         <div class="mySlides fade">
             <img src="images/diapositiva1.jpg" style="width:100%">
@@ -46,60 +46,58 @@
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
-<!-- Secci  n de Productos -->
+<!-- Secciòn de Productos -->
 <div class="productos-seccion">
     <h2>Conoce nuestras nuevas Adquisiciones</h2>
     <div class="productos-galeria">
-        <!-- Producto 1 -->
-        <div class="producto-item">
-            <img src="images/producto1.jpg" alt="Producto 1">
-            <p>Nombre del Producto 1</p>
-            <p>$10.99</p>
+        <div class="productos-pagina">            
+            <div class="filtros">
+            <h2>Productos Nuevos</h2>
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <!-- Producto 1 -->
+                    <div class="producto-item">
+                        <img src="images/producto1.jpg" alt="Producto 1">
+                        <p>Nombre del Producto 1</p>
+                        <p>$10.99</p>
+                    </div>
+                    <!-- Producto 2 -->
+                    <div class="producto-item">
+                        <img src="images/producto2.jpg" alt="Producto 2">
+                        <p>Nombre del Producto 2</p>
+                        <p>$12.99</p>
+                    </div>
+                    <!-- Producto 3 -->
+                    <div class="producto-item">
+                        <img src="images/producto3.jpg" alt="Producto 3">
+                        <p>Nombre del Producto 3</p>
+                        <p>$15.99</p>
+                    </div>
+                    <!-- Producto 4 -->
+                    <div class="producto-item">
+                        <img src="images/producto4.jpg" alt="Producto 4">
+                        <p>Nombre del Producto 4</p>
+                        <p>$9.99</p>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                let currentIndex = 0;
+                const items = document.querySelectorAll('.producto-item');
+                const totalItems = items.length;
+        
+                function showNext() {
+                    currentIndex = (currentIndex + 1) % totalItems;
+                    const offset = -currentIndex * 50; // Mueve el carrusel
+                    document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+                }
+        
+                setInterval(showNext, 3000); // Cambia cada 3 segundos
+            </script>
         </div>
-        <!-- Producto 2 -->
-        <div class="producto-item">
-            <img src="images/producto2.jpg" alt="Producto 2">
-            <p>Nombre del Producto 2</p>
-            <p>$12.99</p>
-        </div>
-        <!-- Producto 3 -->
-        <div class="producto-item">
-            <img src="images/producto3.jpg" alt="Producto 3">
-            <p>Nombre del Producto 3</p>
-            <p>$15.99</p>
-        </div>
-        <!-- Producto 4 -->
-        <div class="producto-item">
-            <img src="images/producto4.jpg" alt="Producto 4">
-            <p>Nombre del Producto 4</p>
-            <p>$9.99</p>
-        </div>
-        <!-- Productos 5 a 8 (ocultos inicialmente) -->
-        <div class="producto-item hidden">
-            <img src="images/producto5.jpg" alt="Producto 5">
-            <p>Nombre del Producto 5</p>
-            <p>$14.99</p>
-        </div>
-        <div class="producto-item hidden">
-            <img src="images/producto6.jpg" alt="Producto 6">
-            <p>Nombre del Producto 6</p>
-            <p>$11.99</p>
-        </div>
-        <div class="producto-item hidden">
-            <img src="images/producto7.jpg" alt="Producto 7">
-            <p>Nombre del Producto 7</p>
-            <p>$13.99</p>
-        </div>
-        <div class="producto-item hidden">
-            <img src="images/producto8.jpg" alt="Producto 8">
-            <p>Nombre del Producto 8</p>
-            <p>$16.99</p>
-        </div>
-    </div>
-    <button id="cargar-mas-btn">Cargar m  s</button>
-    <button id="ver-todos-btn"><a href="productos.html">Ver productos completos</a></button>
-</div>
-
+        
+        <script src="js/script.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

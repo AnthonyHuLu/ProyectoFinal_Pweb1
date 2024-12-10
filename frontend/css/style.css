@@ -8,9 +8,30 @@ body {
 
 /* estilos del men   */
 nav {
-    background-color: #333;
-    color: white;
-    padding: 20px;
+    position: fixed; /* Fija el menú en la parte superior */
+    top: 0; /* Posición en la parte superior */
+    width: 100%; /* Ancho completo */
+    background-color: #333; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px; /* Espaciado interno */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+nav ul {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+    display: inline; /* Muestra los elementos en línea */
+    margin-right: 15px; /* Espaciado entre elementos */
+}
+nav ul li a {
+    color: white; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+}
+/* Añadir un margen superior para evitar que el contenido se esconda detrás del menú */
+.content {
+    margin-top: 50px; /* Ajusta según la altura del menú */
 }
 
 nav .menu {
@@ -251,4 +272,20 @@ nav .menu li a:hover {
     width: 100%;
     height: auto;
 }
+
+   .carousel {
+          display: flex;
+          overflow: hidden;
+          width: 100%;
+          position: relative;
+      }
+      .carousel-inner {
+          display: flex;
+          transition: transform 0.5s ease;
+      }
+      .producto-item {
+          min-width: 50%; /* Dos recuadros por vista */
+          box-sizing: border-box;
+          padding: 10px;
+      }
 
