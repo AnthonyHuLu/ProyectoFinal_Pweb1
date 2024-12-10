@@ -3,49 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>P  gina Principal</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Menú Superior -->
+    <!-- Men   Superior -->
     <nav>
         <ul class="menu">
             <li class="left"><a href="index.html">Volver al Inicio</a></li>
             <li class="right"><a href="productos.html">Ver Productos</a></li>
-            <li class="right"><a href="iniciar_sesion.html">Iniciar Sesión</a></li>
+<li class="right"><a href="index.html">Ver foro</a></li>
+            <li class="right"><a href="iniciar_sesion.html">Iniciar Sesi  n</a></li>
         </ul>
     </nav>
 
-    <!-- Presentación de Diapositivas -->
+    <!-- Presentaci  n de Diapositivas -->
     <div class="slideshow-container">
         <div class="mySlides fade">
             <img src="images/diapositiva1.jpg" style="width:100%">
             <div class="text">Encuentra a tu mejor amigo</div>
-            <button class="slide-btn">Diapositiva 1</button>
+            <button class="btn-primary adopt-btn">Adopta</button>
+            <div class="subtext">  Ya tienes una mascota? <br>  ^znanse ambos a nuestra comunidad</div>
+            <button class="btn-primary slide-btn"> ^znete</button>
         </div>
         <div class="mySlides fade">
             <img src="images/diapositiva2.jpg" style="width:100%">
             <div class="text">Todo lo que necesitas para tu mascota</div>
-            <button class="slide-btn">Diapositiva 2</button>
+            <div class="subtext">- Cuidado Integral <br> - Entretenimiento <br> - Atenci  n veterinaria</div>
+            <button class="btn-primary slide-btn">Servicios</button>
+            <div class="subtext-left">- Estilo y Comodidad <br> - Alimentaci  n y Nutrici  n <br> - Salud e Higiene</div>
+            <button class="btn-primary product-btn">Productos</button>
         </div>
         <div class="mySlides fade">
             <img src="images/diapositiva3.jpg" style="width:100%">
-            <div class="text">Participa en nuestras actividades</div>
-            <button class="slide-btn">Diapositiva 3</button>
+            <div class="text-right">Participa en nuestras actividades</div>
+           <button class="btn-primary event-btn">Eventos</button>
+            <div class="subtext">OBTEN BENEFICIOS EXCLUSIVOS <br> Disfruta de Actividades y Charlas Informativas <br>   No te lo pierdas!</div>
         </div>
 
-        <!-- Flechas de navegación -->
+        <!-- Flechas de navegaci  n -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
-    <!-- Contenido Principal -->
-    <div class="contenido">
-        <h1>Bienvenido a Nuestra Tienda de Mascotas</h1>
-        <p>Aquí puedes encontrar los mejores productos para tus mascotas y leer artículos interesantes.</p>
+<!-- Secci  n de Productos -->
+<div class="productos-seccion">
+    <h2>Conoce nuestras nuevas Adquisiciones</h2>
+    <div class="productos-galeria">
+        <!-- Producto 1 -->
+        <div class="producto-item">
+            <img src="images/producto1.jpg" alt="Producto 1">
+            <p>Nombre del Producto 1</p>
+            <p>$10.99</p>
+        </div>
+        <!-- Producto 2 -->
+        <div class="producto-item">
+            <img src="images/producto2.jpg" alt="Producto 2">
+            <p>Nombre del Producto 2</p>
+            <p>$12.99</p>
+        </div>
+        <!-- Producto 3 -->
+        <div class="producto-item">
+            <img src="images/producto3.jpg" alt="Producto 3">
+            <p>Nombre del Producto 3</p>
+            <p>$15.99</p>
+        </div>
+        <!-- Producto 4 -->
+        <div class="producto-item">
+            <img src="images/producto4.jpg" alt="Producto 4">
+            <p>Nombre del Producto 4</p>
+            <p>$9.99</p>
+        </div>
+        <!-- Productos 5 a 8 (ocultos inicialmente) -->
+        <div class="producto-item hidden">
+            <img src="images/producto5.jpg" alt="Producto 5">
+            <p>Nombre del Producto 5</p>
+            <p>$14.99</p>
+        </div>
+        <div class="producto-item hidden">
+            <img src="images/producto6.jpg" alt="Producto 6">
+            <p>Nombre del Producto 6</p>
+            <p>$11.99</p>
+        </div>
+        <div class="producto-item hidden">
+            <img src="images/producto7.jpg" alt="Producto 7">
+            <p>Nombre del Producto 7</p>
+            <p>$13.99</p>
+        </div>
+        <div class="producto-item hidden">
+            <img src="images/producto8.jpg" alt="Producto 8">
+            <p>Nombre del Producto 8</p>
+            <p>$16.99</p>
+        </div>
     </div>
+    <button id="cargar-mas-btn">Cargar m  s</button>
+    <button id="ver-todos-btn"><a href="productos.html">Ver productos completos</a></button>
+</div>
 
     <script src="js/script.js"></script>
 </body>
 </html>
+
 

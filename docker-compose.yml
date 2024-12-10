@@ -1,18 +1,25 @@
 version: '3.7'
 services:
   db:
-    build: ./db
-    ports:
-      - "3306:3306"
+    image: mariadb:latest
     environment:
       MYSQL_ROOT_PASSWORD: contrasena
     volumes:
       - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
 
   frontend:
     build: ./frontend
     ports:
       - "80:80"
+    depends_on:
+      - db
+
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
     depends_on:
       - db
 
