@@ -1,0 +1,9 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {}
+  // Archivo package.json para gestionar las dependencias del contenedor Backend
+  // Implementar Codigo
+}
+
