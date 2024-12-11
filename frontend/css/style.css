@@ -1,79 +1,95 @@
-/* estilos generales */
-<<<<<<< HEAD
 body  {
-=======
-body {
->>>>>>> ac32bd4e0730243c1659c6d92e85bd0de28ac861
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
 }
 
-/* estilos del men   */
+/* Estilos del menú */
 nav {
     position: fixed; /* Fija el menú en la parte superior */
     top: 0; /* Posición en la parte superior */
-    width: 100%; /* Ancho completo */
+    width: 97%; /* Ancho completo */
     background-color: #333; /* Color de fondo */
     color: white; /* Color del texto */
     padding: 10px; /* Espaciado interno */
     z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
+
 nav ul {
     list-style-type: none; /* Elimina los puntos de la lista */
     margin: 0;
     padding: 0;
+    display: flex; /* Usar flexbox para alinear los elementos */
+    justify-content: flex-end; /* Alinear a la derecha */
 }
+
 nav ul li {
-    display: inline; /* Muestra los elementos en línea */
-    margin-right: 15px; /* Espaciado entre elementos */
+    margin-right: 30px; /* Espaciado entre elementos (ajustado) */
 }
+
+nav ul li:last-child {
+    margin-right: 0; /* Elimina el margen del último elemento */
+}
+
 nav ul li a {
     color: white; /* Color del enlace */
     text-decoration: none; /* Sin subrayado */
-}
-/* Añadir un margen superior para evitar que el contenido se esconda detrás del menú */
-.content {
-    margin-top: 50px; /* Ajusta según la altura del menú */
+    font-size: 16px; /* Tamaño de fuente */
 }
 
-nav .menu {
+
+/* Estilos para el menú desplegable */
+.menu {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: space-between;
+
 }
 
-nav .menu .left {
-    margin-right: auto;
+.menu > li {
+    position: relative;
+    display: inline-block;
 }
 
-nav .menu .right {
-    margin-left: auto;
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
-nav .menu li {
-    display: inline;
+.menu > li:hover .submenu {
+    display: block;
 }
 
-nav .menu li a {
-    color: white;
+.submenu li {
+    display: block;
+    padding: 8px 12px;
+}
+
+.submenu li a {
     text-decoration: none;
-    padding: 10px 20px;
+    color: black;
 }
 
-nav .menu li a:hover {
-    background-color: #555;
+.submenu li a:hover {
+    background-color: #f0f0f0;
 }
 
-/* estilos del contenido */
+/* Añadir un margen superior para evitar que el contenido se esconda detrás del menú */
+.content {
+    margin-top: 30px; /* Ajusta según la altura del menú */
+}
+
+/* Estilos del contenido */
 .contenido {
     padding: 20px;
 }
 
-/* estilos del slideshow */
+/* Estilos del slideshow */
 .slideshow-container {
     position: relative;
     margin: auto;
@@ -196,7 +212,7 @@ nav .menu li a:hover {
     background-color: rgba(0,0,0,0.8);
 }
 
-/* transici  n m  s suave para las diapositivas */
+/* Transición más suave para las diapositivas */
 .fade {
     animation-name: fade;
     animation-duration: 2.5s;
@@ -207,7 +223,7 @@ nav .menu li a:hover {
     to {opacity: 1}
 }
 
-/* Secci  n de Productos */
+/* Sección de Productos */
 .productos-seccion {
     padding: 20px;
     background-color: #fff;
@@ -240,7 +256,7 @@ nav .menu li a:hover {
     display: none;
 }
 
-/* P  gina de Productos */
+/* Página de Productos */
 .productos-pagina {
     padding: 20px;
     background-color: #fff;
@@ -277,19 +293,43 @@ nav .menu li a:hover {
     height: auto;
 }
 
-   .carousel {
-          display: flex;
-          overflow: hidden;
-          width: 100%;
-          position: relative;
-      }
-      .carousel-inner {
-          display: flex;
-          transition: transform 0.5s ease;
-      }
-      .producto-item {
-          min-width: 50%; /* Dos recuadros por vista */
-          box-sizing: border-box;
-          padding: 10px;
-      }
+.carousel {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.producto-item {
+    min-width: 50%; /* Dos recuadros por vista */
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+header {
+    background: url('background_image.jpg') no-repeat center center; /* Asegúrate de tener una imagen de fondo */
+    background-size: cover;
+    height: 50px; /* Altura del encabezado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
 

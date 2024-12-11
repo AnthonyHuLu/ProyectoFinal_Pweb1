@@ -19,4 +19,3 @@ CREATE TABLE mascotas (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (duenio_id) REFERENCES usuarios(id)
 );
-

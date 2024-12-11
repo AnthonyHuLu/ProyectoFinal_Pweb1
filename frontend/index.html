@@ -5,48 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pàgina Principal</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Estilos adicionales para la barra de menú y encabezado */
-        nav {
-            background-color: #333;
-            padding: 15px; /* Aumentar el padding para hacerla más gruesa */
-        }
-        .menu {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .menu li {
-            margin-left: 20px;
-        }
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px; /* Aumentar el tamaño de la fuente */
-        }
-        header {
-            background: url('background_image.jpg') no-repeat center center; /* Asegúrate de tener una imagen de fondo */
-            background-size: cover;
-            height: 50px; /* Altura del encabezado */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
 </head>
 <body>
     <!-- Encabezado -->
@@ -54,13 +13,20 @@
         Bienvenido a Nuestra Comunidad de Mascotas
     </header>
 
-    <!-- Menù Superior -->
+    <!-- Menú Superior -->
     <nav>
         <ul class="menu">
-            <li class="right"><a href="iniciar_sesion.html">Contàctanos</a></li>
-            <li class="right"><a href="iniciar_sesion.html">Iniciar Sesiòn</a></li>
-            <li class="right"><a href="productos.html">Ver Productos</a></li>
-            <li class="right"><a href="index.html">Ver foro</a></li>
+            <li class="right"><a href="iniciar_sesion.html"><i class="fas fa-phone"></i>  Contáctanos</a></li>
+            <li class="right"><a href="iniciar_sesion.html"><i class="fas fa-user"></i>  Iniciar Sesión</a></li>
+            <li class="right">
+                <a href="productos.html"><i class="fas fa-shopping-cart"></i>  Tienda</a>
+                <ul class="submenu">
+                    <li><a href="productos.html">Ver Productos</a></li>
+                    <li><a href="adopta.html">Adopta</a></li>
+                    <li><a href="promo.html">Promo</a></li>
+                </ul>
+            </li>
+            <li class="right"><a href="index.html"><i class="fas fa-comments"></i>  Ver foro</a></li>
         </ul>
     </nav>
 
@@ -88,12 +54,12 @@
             <div class="subtext">OBTEN BENEFICIOS EXCLUSIVOS <br> Disfruta de Actividades y Charlas Informativas <br> No te lo pierdas!</div>
         </div>
 
-        <!-- Flechas de navegaci  n -->
+        <!-- Flechas de navegación -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
-    <!-- Secciòn de Productos -->
+    <!-- Sección de Productos -->
     <div class="productos-seccion">
         <h2>Conoce nuestras nuevas Adquisiciones</h2>
         <div class="productos-galeria">
