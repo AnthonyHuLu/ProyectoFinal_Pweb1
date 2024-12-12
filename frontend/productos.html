@@ -23,36 +23,37 @@
             <h3>Filtrar por:</h3>
             <p>Esta sección mostrará filtros (no funcional por ahora)</p>
         </div>
-
-<div class="productos-galeria">
-    <!-- Producto 1 -->
-    <div class="producto-item">
-        <img src="images/producto1.jpg" alt="Producto 1">
-        <p>Nombre del Producto 1</p>
-        <p>$10.99</p>
-    </div>
-    <!-- Producto 2 -->
-    <div class="producto-item">
-        <img src="images/producto2.jpg" alt="Producto 2">
-        <p>Nombre del Producto 2</p>
-        <p>$12.99</p>
-    </div>
-    <!-- Producto 3 -->
-    <div class="producto-item">
-        <img src="images/producto3.jpg" alt="Producto 3">
-        <p>Nombre del Producto 3</p>
-        <p>$15.99</p>
-    </div>
-    <!-- Producto 4 -->
-    <div class="producto-item">
-        <img src="images/producto4.jpg" alt="Producto 4">
-        <p>Nombre del Producto 4</p>
-        <p>$9.99</p>
-    </div>
-</div>
-
+        <div class="productos-galeria">
+            <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
     </div>
 
-    <script src="js/script.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('http://localhost:3000/api/productos')
+            .then(response => response.json())
+            .then(data => {
+                const productosGaleria = document.querySelector('.productos-galeria');
+                productosGaleria.innerHTML = ''; // Limpiar contenido anterior
+                data.forEach(producto => {
+                    const productoDiv = document.createElement('div');
+                    productoDiv.classList.add('producto');
+                    productoDiv.innerHTML = `
+                        <h2>${producto.nombre}</h2>
+                        <p>Precio: $${producto.precio}</p>
+                        <img src="${producto.imagen_ruta}" alt="${producto.nombre}">
+                    `;
+                    productosGaleria.appendChild(productoDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+                const productosGaleria = document.querySelector('.productos-galeria');
+                productosGaleria.innerHTML = '<p>Error al cargar los productos.</p>';
+            });
+    });
+</script>
 </body>
 </html>
+

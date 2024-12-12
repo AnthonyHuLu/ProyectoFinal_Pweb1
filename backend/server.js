@@ -1,14 +1,17 @@
 const express = require('express');
+const cors = require('cors');
 const mysql = require('mysql');
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
+
 const db = mysql.createConnection({
-  host: 'db', // Nombre del servicio de la base de datos en Docker Compose
+  host: 'db',
   user: 'root',
   password: 'contrasena',
-  database: 'tu_base_de_datos'
+  database: 'principal'
 });
 
 db.connect((err) => {
@@ -20,7 +23,7 @@ db.connect((err) => {
 });
 
 app.get('/api/productos', (req, res) => {
-  const query = 'SELECT * FROM productos LIMIT 8';
+  const query = 'SELECT * FROM productos';
   db.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching products:', err);
