@@ -4,7 +4,7 @@ ENV MYSQL_ROOT_PASSWORD=contrasena
 
 EXPOSE 3306
 
-COPY ./sql/permisos.sql /docker-entrypoint-initdb.d/
+COPY ./sql/permisos_personalizado.sql /docker-entrypoint-initdb.d/
 COPY ./sql/principal.sql /docker-entrypoint-initdb.d/
 
 RUN apt-get update && apt-get install -y \
