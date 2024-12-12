@@ -3,30 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pàgina Principal</title>
+    <title>Pets</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
 </head>
 <body>
-    <!-- Encabezado -->
+    
     <header>
-        Bienvenido a Nuestra Comunidad de Mascotas
+    <img src="https://st1.zoom.us/fe-static/fe-signup-login-active/img/ZoomNewLogo.b2fd5c95.png" alt="Zoom Logo" class="logo">
     </header>
 
-    <!-- Menú Superior -->
-    <nav>
+  <nav class="menudearriba">
+    <ul>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#evidencias">Evidencias</a></li>
+        <li><a href="#acerca-de">Acerca de</a></li>
+    </ul>
+  </nav>
+   <nav>
         <ul class="menu">
-            <li class="right"><a href="iniciar_sesion.html"><i class="fas fa-phone"></i>  Contáctanos</a></li>
-            <li class="right"><a href="iniciar_sesion.html"><i class="fas fa-user"></i>  Iniciar Sesión</a></li>
-            <li class="right">
-                <a href="productos.html"><i class="fas fa-shopping-cart"></i>  Tienda</a>
+            <li><a href="index.html"><i class="fas fa-comments"></i> Foro</a></li>
+            <li><a href="productos.html"><i class="fas fa-shopping-cart"></i> Tienda</a>
                 <ul class="submenu">
-                    <li><a href="productos.html">Ver Productos</a></li>
+                    <li><a href="productos.html">Productos</a></li>
                     <li><a href="adopta.html">Adopta</a></li>
-                    <li><a href="promo.html">Promo</a></li>
+                    <li><a href="promo.html">Promos</a></li>
                 </ul>
             </li>
-            <li class="right"><a href="index.html"><i class="fas fa-comments"></i>  Ver foro</a></li>
+            <li><a><i class="fas fa-user"></i> Acceder</a>
+                <ul class="submenu">
+                    <li><a href="adopta.html">Registrarse</a></li>
+                    <li><a href="promo.html">Iniciar Sesión</a></li>
+                </ul>
+            </li>
+            <li><a href="iniciar_sesion.html"><i class="fas fa-shopping-cart"></i> Eventos</a></li>
+            <li><a href="iniciar_sesion.html"><i class="fas fa-phone"></i> Contáctanos</a></li>
+            
+            <!-- Barra de búsqueda -->
+            <li>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </li>
         </ul>
     </nav>
 

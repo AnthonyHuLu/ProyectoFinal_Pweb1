@@ -2,82 +2,173 @@ body  {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: black;
 }
 
-/* Estilos del menú */
+/* Estilo para el encabezado */
+header {
+    background-color: black; /* Fondo negro */
+    padding: 20px; /* Espaciado interno */
+    display: flex; /* Usar flexbox para alinear elementos */
+    align-items: left; /* Centrar verticalmente */
+}
+
+/* Estilo para el logo */
+.logo {
+    height: 50px; /* Ajusta la altura del logo */
+    margin-right: 900px; /* Espacio a la derecha del logo */
+}
+
+/* Estilo para el menú superior menudearriba */
+.menudearriba {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    background-color: #ffffff; /* Fondo blanco */
+    width: auto;
+    z-index: 1100;
+    display: flex;
+    padding: 10px 20px; /* Espaciado interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #ccc; /* Línea que separa */
+}
+
+.menudearriba ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menudearriba ul li {
+    margin: 0 10px;
+}
+
+.menudearriba ul li a {
+    text-decoration: none;
+    color: #000; /* Color de los enlaces */
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.menudearriba ul li a:hover {
+    border: 1px solid #000; /* Subrayado al pasar el cursor */
+    border-radius: 3px;
+}
+
 nav {
-    position: fixed; /* Fija el menú en la parte superior */
-    top: 0; /* Posición en la parte superior */
-    width: 97%; /* Ancho completo */
-    background-color: #333; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 10px; /* Espaciado interno */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    position: fixed;
+    top: 0; /* Separación del nuevo menú superior */
+    right: 0;
+    background-color: #f8f9fa; /* Fondo */
+    width: auto;
+    z-index: 1000;
+    display: flex;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #ccc;
+}
+
+/* Comentario: Ajusta esta propiedad para cambiar la separación entre el menú principal y el superior */
+nav {
+    margin-top: 20px; /* Cambiar el valor aquí para ajustar la separación */
 }
 
 nav ul {
-    list-style-type: none; /* Elimina los puntos de la lista */
+    list-style: none;
     margin: 0;
     padding: 0;
-    display: flex; /* Usar flexbox para alinear los elementos */
-    justify-content: flex-end; /* Alinear a la derecha */
+    display: flex;
+    align-items: center;
 }
 
 nav ul li {
-    margin-right: 30px; /* Espaciado entre elementos (ajustado) */
-}
-
-nav ul li:last-child {
-    margin-right: 0; /* Elimina el margen del último elemento */
+    margin: 0 10px;
 }
 
 nav ul li a {
-    color: white; /* Color del enlace */
-    text-decoration: none; /* Sin subrayado */
-    font-size: 16px; /* Tamaño de fuente */
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
 }
 
-
+nav ul li a:hover {
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+        
 /* Estilos para el menú desplegable */
 .menu {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 
 }
 
 .menu > li {
     position: relative;
     display: inline-block;
+    margin: 0 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
 }
 
 .submenu {
-    display: none;
+    display: none; /* Oculta el submenú por defecto */
     position: absolute;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: white; /* Color de fondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
     z-index: 1;
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 10px; /* Espacio entre el menú principal y el submenú */
+    transition: all 0.3s ease; /* Transición suave */
 }
 
 .menu > li:hover .submenu {
-    display: block;
+    display: block; /* Muestra el submenú al pasar el mouse */
 }
 
 .submenu li {
-    display: block;
-    padding: 8px 12px;
+    display: block; /* Muestra cada elemento en bloque */
+    padding: 10px 15px; /* Mejora el espaciado interno */
 }
 
 .submenu li a {
-    text-decoration: none;
-    color: black;
+    text-decoration: none; /* Sin subrayado */
+    color: black; /* Color del texto */
+    display: block; /* Hace que el área del enlace sea más grande */
 }
 
 .submenu li a:hover {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+    color: #333; /* Cambia el color del texto al pasar el mouse */
 }
+
+/* Estilo adicional para el primer elemento del submenú */
+.submenu li:first-child {
+    border-top-left-radius: 5px; /* Bordes redondeados en la parte superior */
+    border-top-right-radius: 5px;
+}
+
+/* Estilo adicional para el último elemento del submenú */
+.submenu li:last-child {
+    border-bottom-left-radius: 5px; /* Bordes redondeados en la parte inferior */
+    border-bottom-right-radius: 5px;
+}
+
 
 /* Añadir un margen superior para evitar que el contenido se esconda detrás del menú */
 .content {
