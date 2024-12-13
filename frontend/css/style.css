@@ -1,8 +1,8 @@
-body  {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: black;
+
 }
 
 /* Estilo para el encabezado */
@@ -10,28 +10,41 @@ header {
     background-color: black; /* Fondo negro */
     padding: 20px; /* Espaciado interno */
     display: flex; /* Usar flexbox para alinear elementos */
-    align-items: left; /* Centrar verticalmente */
+    align-items: center; /* Centrar verticalmente */
 }
 
 /* Estilo para el logo */
 .logo {
-    height: 50px; /* Ajusta la altura del logo */
+    height: 70px; /* Ajusta la altura del logo */
     margin-right: 900px; /* Espacio a la derecha del logo */
 }
 
 /* Estilo para el menú superior menudearriba */
 .menudearriba {
     position: fixed;
-    top: 50px;
-    right: 0;
+    top: 50px; /* Ajusta según la altura del encabezado */
+    left: 0; /* Mueve el menú a la izquierda */
     background-color: #ffffff; /* Fondo blanco */
-    width: auto;
+    width: 200px; /* Ancho del menú */
     z-index: 1100;
-    display: flex;
-    padding: 10px 20px; /* Espaciado interno */
+    display: none; /* Oculto por defecto */
+    flex-direction: column; /* Muestra los elementos en columna */
+    padding: 10px; /* Espaciado interno */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid #ccc; /* Línea que separa */
+    border-right: 1px solid #ccc; /* Línea que separa */
 }
+
+/* Icono para mostrar/ocultar el menú */
+.menu-icon {
+    position: fixed;
+    top: 600px; /* Ajusta según sea necesario */
+    left: 20px; /* Espacio desde el borde izquierdo */
+    cursor: pointer;
+    font-size: 24px; /* Tamaño del icono */
+    color: black; /* Color del icono */
+    z-index: 1200; /* Asegúrate de que esté por encima del menú */
+}
+
 
 .menudearriba ul {
     list-style: none;
@@ -49,7 +62,7 @@ header {
     text-decoration: none;
     color: #000; /* Color de los enlaces */
     font-size: 14px;
-    padding: 5px 10px;
+    padding: 5px 10px ;
     border: 1px solid transparent;
     transition: all 0.3s;
 }
@@ -102,7 +115,7 @@ nav ul li a:hover {
     border: 1px solid #000;
     border-radius: 3px;
 }
-        
+
 /* Estilos para el menú desplegable */
 .menu {
     list-style: none;
@@ -111,7 +124,6 @@ nav ul li a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .menu > li {
@@ -126,6 +138,7 @@ nav ul li a:hover {
     font-weight: bold;
 }
 
+/* Estilo para las transiciones de los submenús */
 .submenu {
     display: none; /* Oculta el submenú por defecto */
     position: absolute;
@@ -134,22 +147,28 @@ nav ul li a:hover {
     z-index: 1;
     border-radius: 5px; /* Bordes redondeados */
     margin-top: 10px; /* Espacio entre el menú principal y el submenú */
-    transition: all 0.3s ease; /* Transición suave */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición suave para la opacidad y visibilidad */
+    opacity: 0; /* Inicialmente invisible */
+    visibility: hidden; /* Evita que el submenú sea interactivo cuando está oculto */
 }
 
 .menu > li:hover .submenu {
     display: block; /* Muestra el submenú al pasar el mouse */
+    opacity: 1; /* Hace visible el submenú */
+    visibility: visible; /* Permite la interacción con el submenú */
 }
 
 .submenu li {
     display: block; /* Muestra cada elemento en bloque */
     padding: 10px 15px; /* Mejora el espaciado interno */
+    transition: opacity 7s ease; /* Transición suave para la opacidad */
 }
 
 .submenu li a {
     text-decoration: none; /* Sin subrayado */
     color: black; /* Color del texto */
     display: block; /* Hace que el área del enlace sea más grande */
+    transition: background-color 7s; /* Transición suave para el fondo */
 }
 
 .submenu li a:hover {
@@ -169,6 +188,44 @@ nav ul li a:hover {
     border-bottom-right-radius: 5px;
 }
 
+/* Estilos para el fondo borroso */
+/* Estilo para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(169, 169, 169, 0.8); /* Gris oscuro */
+
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2.5px); /* Aplica un desenfoque al fondo detrás del modal */
+}
+
+.modal-content {
+    background-color: white; /* Fondo del contenido del modal */
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: left;
+    filter: blur(0); /* Mantiene el contenido del modal nítido */
+}
+
+.modal-content.blur {
+    filter: blur(2px); /* Aplica desenfoque al contenido del modal */
+}
+
+.close {
+    cursor: pointer;
+    color: red;
+    float: right;
+}
+
+.hidden {
+    display: none; /* Clase para ocultar elementos */
+}
 
 /* Añadir un margen superior para evitar que el contenido se esconda detrás del menú */
 .content {
@@ -184,7 +241,7 @@ nav ul li a:hover {
 .slideshow-container {
     position: relative;
     margin: auto;
-    max-width: 100%;
+    max-width: 90%;
     height: 500px;
     background-color: #333;
     color: white;
@@ -385,6 +442,7 @@ nav ul li a:hover {
 }
 
 .carousel {
+    margin-left: 40px;
     display: flex;
     overflow: hidden;
     width: 100%;
@@ -417,10 +475,60 @@ header {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #333;
-    color: white;
     position: relative;
     bottom: 0;
-    width: 100%;
+    width: auto;
 }
 
+footer {
+    background-color: rgba(169, 169, 169, 0.8); /* Gris oscuro */
+ 
+    padding: 20px 0; 
+}
+
+.container {
+    width: 80%; 
+    margin: 0 auto; 
+}
+
+.row {
+    display: flex; 
+    justify-content: space-between; 
+}
+
+.col {
+    flex: 1; 
+    padding: 0 20px; 
+}
+
+ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+ul li {
+    margin: 5px 0; 
+}
+
+ul li a {
+    color: black; 
+    text-decoration: none; 
+}
+
+ul li a:hover {
+    text-decoration: underline; 
+}
+
+.social-media {
+    display: flex; 
+    justify-content: flex-end; 
+}
+
+.social-media li {
+    margin-left: 10px; 
+}
+
+.social-media li a {
+    color: black; 
+    font-size: 20px; 
+}

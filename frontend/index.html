@@ -3,24 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pets</title>
+    <title>🎄✨ Pets ✨🎄</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        body {
+            margin: 0; /* Elimina el margen por defecto */
+            overflow-x: hidden; /* Elimina la barra de desplazamiento horizontal */
+        }
+
+        .menudearriba {
+            display: none; /* Oculta el menú por defecto */
+            flex-direction: column; /* Asegura que los elementos se apilen en columna */
+            position: absolute; /* Permite que el menú se superponga */
+            background-color: white; /* Fondo blanco para el menú */
+            width: 100%; /* Ancho completo */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        }
+
+        .menudearriba ul {
+            list-style-type: none; /* Elimina los puntos de la lista */
+            padding: 0; /* Elimina el padding */
+            margin: 0; /* Elimina el margen */
+        }
+
+        .menudearriba li {
+            padding: 10px; /* Espaciado entre los elementos del menú */
+        }
+
+        .menu-icon {
+            cursor: pointer; /* Cambia el cursor al pasar sobre el icono del menú */
+        }
+    </style>
 </head>
 <body>
     
     <header>
-    <img src="https://st1.zoom.us/fe-static/fe-signup-login-active/img/ZoomNewLogo.b2fd5c95.png" alt="Zoom Logo" class="logo">
+        <img src="images/logo2.jpg" alt="Zoom Logo" class="logo">
     </header>
 
-  <nav class="menudearriba">
-    <ul>
-        <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#evidencias">Evidencias</a></li>
-        <li><a href="#acerca-de">Acerca de</a></li>
-    </ul>
-  </nav>
-   <nav>
+    <!-- Icono para mostrar/ocultar el menú -->
+    <div class="menu-icon" id="menuToggle">
+        <i class="fas fa-bars"></i> <!-- Icono de menú -->
+    </div>
+
+    <nav class="menudearriba">
+        <ul>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#evidencias">Evidencias</a></li>
+            <li><a href="#acerca-de">Acerca de</a></li>
+        </ul>
+    </nav>
+
+    <nav>
         <ul class="menu">
             <li><a href="index.html"><i class="fas fa-comments"></i> Foro</a></li>
             <li><a href="productos.html"><i class="fas fa-shopping-cart"></i> Tienda</a>
@@ -32,8 +67,8 @@
             </li>
             <li><a><i class="fas fa-user"></i> Acceder</a>
                 <ul class="submenu">
-                    <li><a href="adopta.html">Registrarse</a></li>
-                    <li><a href="promo.html">Iniciar Sesión</a></li>
+                    <li><button id="registerBtn">Registrarse</button></li>
+                    <li><button id="loginBtn">Iniciar Sesión</button></li>
                 </ul>
             </li>
             <li><a href="iniciar_sesion.html"><i class="fas fa-shopping-cart"></i> Eventos</a></li>
@@ -49,8 +84,15 @@
         </ul>
     </nav>
 
-    <!-- Presentaciòn de Diapositivas -->
+    <!-- Presentación de Diapositivas -->
     <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="images/dog.jpg" style="width:100%">
+            <div class="text">Encuentra a tu mejor amigo</div>
+            <button class="btn-primary adopt-btn">Adopta</button>
+            <div class="subtext">Ya tienes una mascota? <br> Conózcanse ambos a nuestra comunidad</div>
+            <button class="btn-primary slide-btn">Únete</button>
+        </div>
         <div class="mySlides fade">
             <img src="images/diapositiva1.jpg" style="width:100%">
             <div class="text">Encuentra a tu mejor amigo</div>
@@ -80,61 +122,188 @@
 
     <!-- Sección de Productos -->
     <div class="productos-seccion">
-        <h2>Conoce nuestras nuevas Adquisiciones</h2>
+        <h2>Vista previa, conoce mas sobre nuestras nuevas adquisiciones!</h2>
         <div class="productos-galeria">
             <div class="productos-pagina">            
                 <div class="filtros">
-                <h2>Productos Nuevos</h2>
-                <div class="carousel">
-                    <div class="carousel-inner">
-                        <!-- Producto 1 -->
-                        <div class="producto-item">
-                            <img src="images/producto1.jpg" alt="Producto 1">
-                            <p>Nombre del Producto 1</p>
-                            <p>$10.99</p>
-                        </div>
-                        <!-- Producto 2 -->
-                        <div class="producto-item">
-                            <img src="images/producto2.jpg" alt="Producto 2">
-                            <p>Nombre del Producto 2</p>
-                            <p>$12.99</p>
-                        </div>
-                        <!-- Producto 3 -->
-                        <div class="producto-item">
-                            <img src="images/producto3.jpg" alt="Producto 3">
-                            <p>Nombre del Producto 3</p>
-                            <p>$15.99</p>
-                        </div>
-                        <!-- Producto 4 -->
-                        <div class="producto-item">
-                            <img src="images/producto4.jpg" alt="Producto 4">
-                            <p>Nombre del Producto 4</p>
-                            <p>$9.99</p>
+                    <h2>secciòn de recomendados</h2>
+                    <div class="carousel">
+                        <div class="carousel-inner">
+                            <!-- Producto 1 -->
+                            <div class="producto-item">
+                                <img src="images/collar_perro.jpg" alt="Producto 1">
+                                <p>collar pràctico</p>
+                                <p>$10.99</p>
+                            </div>
+                            <!-- Producto 2 -->
+                            <div class="producto-item">
+                                <img src="images/comida_perros.jpg" alt="Producto 2">
+                                <p>ricocan premium</p>
+                                <p>$12.99</p>
+                            </div>
+                            <!-- Producto 3 -->
+                            <div class="producto-item">
+                                <img src="images/comida_gatos.jpg" alt="Producto 3">
+                                <p>ricocat premium+</p>
+                                <p>$15.99</p>
+                            </div>
+                            <!-- Producto 4 -->
+                            <div class="producto-item">
+                                <img src="images/rascador_gato.jpg" alt="Producto 4">
+                                <p>rascador para gatos</p>
+                                <p>$9.99</p>
+                            </div>
                         </div>
                     </div>
+                    <script>
+                        let currentIndex = 0;
+                        const items = document.querySelectorAll('.producto-item');
+                        const totalItems = items.length;
+
+                        function showNext() {
+                            currentIndex = (currentIndex + 1) % totalItems;
+                            const offset = -currentIndex * 50; // Mueve el carrusel
+                            document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+                        }
+
+                        setInterval(showNext, 3000); // Cambia cada 3 segundos
+                    </script>
                 </div>
-                <script>
-                    let currentIndex = 0;
-                    const items = document.querySelectorAll('.producto-item');
-                    const totalItems = items.length;
-            
-                    function showNext() {
-                        currentIndex = (currentIndex + 1) % totalItems;
-                        const offset = -currentIndex * 50; // Mueve el carrusel
-                        document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
-                    }
-            
-                    setInterval(showNext, 3000); // Cambia cada 3 segundos
-                </script>
+                
+                <script src="js/script.js"></script>
             </div>
-            
-            <script src="js/script.js"></script>
+        </div>
+    </div>
+    
+    <!-- Modales para Registro e Iniciar Sesión -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close" id="closeRegister">&times;</span>
+            <h2>Registro de Usuario</h2>
+            <label for="username">Usuario:</label><br>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="email">Correo Electrónico:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="password">Contraseña:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+            <label for="role">Rol:</label><br>
+            <select id="role" name="role">
+                <option value="cliente">Cliente</option>
+                <option value="admin">Admin</option>
+            </select><br><br>
+            <button class="button" id="registerSubmit">Registrarse</button>
+            <button class="button" id="cancelRegister">Cancelar</button>
+        ```html
         </div>
     </div>
 
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeLogin">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <label for="loginUser ">Usuario:</label><br>
+            <input type="text" id="loginUser " name="loginUser "><br><br>
+            <label for="loginPassword">Contraseña:</label><br>
+            <input type="password" id="loginPassword" name="loginPassword"><br><br>
+            <button class="button" id="loginSubmit">Iniciar Sesión</button>
+            <button class="button" id="cancelLogin">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar el modal de registro
+        document.getElementById('registerBtn').onclick = function() {
+            document.body.classList.add('blur'); // Aplica el desenfoque al cuerpo
+            document.getElementById('registerModal').style.display = 'flex';
+            hideSlideshow(); // Oculta la presentación de diapositivas
+        }
+    
+        // Mostrar el modal de inicio de sesión
+        document.getElementById('loginBtn').onclick = function() {
+            document.body.classList.add('blur'); // Aplica el desenfoque al cuerpo
+            document.getElementById('loginModal').style.display = 'flex';
+            hideSlideshow(); // Oculta la presentación de diapositivas
+        }
+    
+        // Cerrar el modal de registro
+        document.getElementById('closeRegister').onclick = function() {
+            document.body.classList.remove('blur'); // Remueve el desenfoque al cerrar
+            document.getElementById('registerModal').style.display = 'none';
+            showSlideshow(); // Muestra nuevamente la presentación de diapositivas
+        }
+        document.getElementById('cancelRegister').onclick = function() {
+            document.body.classList.remove('blur'); // Remueve el desenfoque al cerrar
+            document.getElementById('registerModal').style.display = 'none';
+            showSlideshow(); // Muestra nuevamente la presentación de diapositivas
+        }
+    
+        // Cerrar el modal de inicio de sesión
+        document.getElementById('closeLogin').onclick = function() {
+            document.body.classList.remove('blur'); // Remueve el desenfoque al cerrar
+            document.getElementById('loginModal').style.display = 'none';
+            showSlideshow(); // Muestra nuevamente la presentación de diapositivas
+        }
+        document.getElementById('cancelLogin').onclick = function() {
+            document.body.classList.remove('blur'); // Remueve el desenfoque al cerrar
+            document.getElementById('loginModal').style.display = 'none';
+            showSlideshow(); // Muestra nuevamente la presentación de diapositivas
+        }
+
+        // Función para ocultar la presentación de diapositivas
+        function hideSlideshow() {
+            const slides = document.querySelectorAll('.mySlides');
+            slides.forEach(slide => {
+                slide.classList.add('hidden'); // Oculta las diapositivas
+            });
+        }
+
+        // Función para mostrar la presentación de diapositivas
+        function showSlideshow() {
+            const slides = document.querySelectorAll('.mySlides');
+            slides.forEach(slide => {
+                slide.classList.remove('hidden'); // Muestra las diapositivas
+            });
+        }
+
+        // Mostrar/ocultar el menú
+        document.getElementById('menuToggle').onclick = function() {
+            const menu = document.querySelector('.menudearriba');
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'flex'; // Muestra el menú
+            } else {
+                menu.style.display = 'none'; // Oculta el menú
+            }
+        }
+    </script>
+    
     <!-- Footer -->
     <footer>
-        Colaboradores
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>&copy; 2024 WilySavy Group, Inc.</p>
+                </div>
+                <div class="col">
+                    <ul>
+                        <li><a href="#">Quienes somos?</a></li>
+                        <li><a href="#">Politicas-cookies</a></li>
+                        <li><a href="#">Ubicaciones-Sedes</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col">
+                    <ul class="social-media">
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitch"></i></a></li>
+                        <li><a href="#"><i class="fab fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
