@@ -28,9 +28,10 @@
         </div>
     </div>
 
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        fetch('/cgi-bin/get_productos.cgi')
+        fetch('http://localhost:3000/api/productos')
             .then(response => response.json())
             .then(data => {
                 const productosGaleria = document.querySelector('.productos-galeria');
