@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
   db:
-    image: mariadbproyecto
     build: ./mariadb
+    container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: contrasena
     volumes:
@@ -21,8 +21,8 @@ services:
     restart: unless-stopped
 
   backend:
-    image: backendproyecto
     build: ./backend
+    container_name: backend
     ports:
       - "3000:3000"
     depends_on:
@@ -33,12 +33,26 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: frontendproyecto
     build: ./frontend
+    container_name: frontend
     ports:
       - "8080:80"
     depends_on:
       - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  servidor:
+    build: ./servidor
+    container_name: servidor
+    ports:
+      - "8000:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./servidor/images:/usr/src/app/images  # Montar el volumen para las imágenes
     networks:
       - app-network
     restart: unless-stopped

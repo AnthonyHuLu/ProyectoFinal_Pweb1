@@ -40,17 +40,13 @@ function mostrarProductos(productos) {
     productos.forEach(producto => {
         const productoItem = document.createElement('div');
         productoItem.classList.add('producto-item');
-        
         const imagen = document.createElement('img');
         imagen.src = producto.imagen_ruta;
         imagen.alt = `Producto ${producto.nombre}`;
-        
         const nombre = document.createElement('p');
         nombre.textContent = producto.nombre;
-        
         const precio = document.createElement('p');
         precio.textContent = `$${producto.precio.toFixed(2)}`;
-        
         productoItem.appendChild(imagen);
         productoItem.appendChild(nombre);
         productoItem.appendChild(precio);
@@ -59,4 +55,23 @@ function mostrarProductos(productos) {
 }
 
 document.addEventListener('DOMContentLoaded', obtenerProductos);
+
+document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    fetch('http://localhost:8000/cgi-bin/registro.cgi', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Puedes agregar lógica para mostrar un mensaje de éxito o manejar los errores.
+        console.log(data);
+        // Redirigir al usuario a la página de configuración de cuenta
+        window.location.href = 'http://localhost:8080/configuracion_cuenta.html';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Registro de Usuario</h2>
+    <form action="http://localhost:8000/cgi-bin/registro.cgi" method="post">
+        <label for="username">Nombre de Usuario:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Correo Electrónico:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Contraseña:</label><br>
+        <input type="password" id="password" name="password" required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br><br>
+        <label for="confirm_password">Confirmar Contraseña:</label><br>
+        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+        <label for="role">Rol:</label><br>
+        <select id="role" name="role" required>
+            <option value="duenio">Dueño</option>
+            <option value="personal">Personal</option>
+            <option value="admin">Admin</option>
+        </select><br><br>
+        <button type="submit">Registrarse</button>
+    </form>
+</body>
+</html>
+

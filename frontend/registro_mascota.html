@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Mascota</title>
+    <script>
+        // Validación del formulario de registro de mascota
+        function validarFormularioMascota(e) {
+            const correoDuenio = document.getElementById('correoDuenio').value;
+            const contrasenaDuenio = document.getElementById('contrasenaDuenio').value;
+            if (correoDuenio.trim() === '' || contrasenaDuenio.trim() === '') {
+                alert('Por favor ingrese el correo y la contraseña del dueño.');
+                e.preventDefault();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('registerMascotaSubmit').addEventListener('click', validarFormularioMascota);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Mascota</h1>
+        <form id="registroMascotaForm">
+            <label for="nombreMascota">Nombre de la Mascota:</label><br>
+            <input type="text" id="nombreMascota" name="nombreMascota" required><br><br>
+            <label for="tipoMascota">Tipo de Mascota:</label><br>
+            <select id="tipoMascota" name="tipoMascota" required>
+                <option value="gato">Gato</option>
+                <option value="perro">Perro</option>
+                <option value="conejo">Conejo</option>
+            </select><br><br>
+            <label for="correoDuenio">Correo del Dueño:</label><br>
+            <input type="email" id="correoDuenio" name="correoDuenio" required><br><br>
+            <label for="contrasenaDuenio">Contraseña del Dueño:</label><br>
+            <input type="password" id="contrasenaDuenio" name="contrasenaDuenio" required><br><br>
+            <button type="submit" id="registerMascotaSubmit">Registrar Mascota</button>
+        </form>
+    </div>
+    <script src="registro_mascota.js"></script>
+</body>
+</html>
+

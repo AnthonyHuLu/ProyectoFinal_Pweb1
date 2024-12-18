@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de Cuenta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Configuración de Cuenta</h2>
+    <div class="configuracion">
+        <div class="info-usuario">
+            <h3>Información de Usuario</h3>
+            <form action="http://localhost:8000/cgi-bin/update_persona.cgi" method="post">
+                <input type="hidden" name="user_id" value="<!-- ID del usuario aquí -->">
+                <label for="direccion">Dirección:</label><br>
+                <input type="text" id="direccion" name="direccion" required><br><br>
+                <label for="metodo_pago">Método de Pago:</label><br>
+                <input type="text" id="metodo_pago" name="metodo_pago" required><br><br>
+                <label for="edad">Edad:</label><br>
+                <input type="number" id="edad" name="edad" required><br><br>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+        <div class="opciones-mascota">
+            <h3>Opciones para Mascotas</h3>
+            <p>Ya tienes una mascota, regístrala para ser parte de nuestra comunidad y recibir promociones:</p>
+            <a href="http://localhost:8080/registro_mascota.html">
+                <button>Registrar Mascota</button>
+            </a>
+            <p>No tienes una mascota, adopta alguna de nuestra comunidad:</p>
+            <a href="http://localhost:8080/adopcion.html">
+                <button>Adoptar Mascota</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+
