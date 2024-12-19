@@ -34,7 +34,7 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 
 # Crear directorios necesarios
-RUN mkdir -p /usr/lib/cgi-bin/ /var/www/html/ /usr/src/app/images/
+RUN mkdir -p /usr/lib/cgi-bin/ /usr/src/app/images/
 
 # Copiar archivos al contenedor
 COPY ./cgi-bin/ /usr/lib/cgi-bin/
@@ -52,10 +52,6 @@ RUN echo 'AddDefaultCharset UTF-8' >> /etc/apache2/apache2.conf
 
 RUN a2dismod mpm_prefork mpm_worker && a2enmod mpm_event
 
-# Establecer permisos para la carpeta web
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
-
 # Exponer el puerto 80
 EXPOSE 80
 
@@ -65,4 +61,3 @@ RUN cpanm Crypt::Eksblowfish && \
 
 # Iniciar Apache en primer plano
 CMD ["apache2ctl", "-D", "FOREGROUND"]
-
