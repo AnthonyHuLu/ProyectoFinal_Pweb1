@@ -6,6 +6,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
+app.use(express.json()); // Habilitar JSON body parsing
 
 const db = mysql.createConnection({
   host: 'db', // Nombre del servicio del contenedor MariaDB en Docker Compose
@@ -21,6 +22,10 @@ db.connect((err) => {
   }
   console.log('Connected to the database.');
 });
+
+// Incluir el archivo de rutas de registro de mascota
+const registroMascotaRoute = require('./routes/registro_mascota'); 
+app.use('/registro_mascota', registroMascotaRoute); // Usar la ruta para manejar las solicitudes
 
 // Rutas de la API...
 

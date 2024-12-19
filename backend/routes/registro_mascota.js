@@ -1,10 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
+const router = express.Router();
 const mysql = require('mysql');
-const app = express();
-
-app.use(bodyParser.json());
+const bcrypt = require('bcrypt');
 
 const db = mysql.createConnection({
     host: 'db',
@@ -13,7 +10,7 @@ const db = mysql.createConnection({
     database: 'permisos'
 });
 
-app.post('/registro_mascota', (req, res) => {
+router.post('/', (req, res) => {
     const { nombreMascota, tipoMascota, correoDuenio, contrasenaDuenio } = req.body;
 
     // Verificar usuario
@@ -28,8 +25,13 @@ app.post('/registro_mascota', (req, res) => {
 
         const usuario = results[0];
         bcrypt.compare(contrasenaDuenio, usuario.hash_password, (err, isMatch) => {
-            if (err || !isMatch) {
-                return res.json({ success: false, message: 'Contraseña incorrecta.' });
+            if (err) {
+                console.error('Error comparando contrase  as:', err);
+                return res.json({ success: false, message: 'Error en la comparaci  n de contrase  as.' });
+            }
+
+            if (!isMatch) {
+                return res.json({ success: false, message: 'Contrase  a incorrecta.' });
             }
 
             // Insertar mascota
@@ -45,7 +47,5 @@ app.post('/registro_mascota', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Servidor escuchando en puerto 3000');
-});
+module.exports = router;
 

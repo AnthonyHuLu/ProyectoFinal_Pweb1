@@ -3,21 +3,19 @@ use strict;
 use warnings;
 use CGI;
 use DBI;
-use Digest::SHA qw(sha256_hex);
+use Crypt::Eksblowfish::Bcrypt qw(bcrypt en_base64);
+use Bytes::Random::Secure qw(random_bytes);
 
 my $cgi = CGI->new;
 
-# Imprimir el encabezado HTTP
 print $cgi->header('text/html; charset=UTF-8');
 
-# Obtener los parámetros del formulario
 my $username = $cgi->param('username') || '';
 my $email = $cgi->param('email') || '';
 my $password = $cgi->param('password') || '';
 my $confirm_password = $cgi->param('confirm_password') || '';
 my $role = $cgi->param('role') || '';
 
-# Validaciones básicas
 if ($password ne $confirm_password) {
     print "<html><head><title>Error</title></head><body><p>Error: Las contraseñas no coinciden.</p></body></html>";
     exit;
@@ -27,13 +25,11 @@ if ($email !~ /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) {
     exit;
 }
 
-# Encriptar la contraseña
-my $password_hash = sha256_hex($password);
+my $salt = en_base64(random_bytes(16));
+my $password_hash = bcrypt($password, '$2a$10$' . $salt);
 
-# Conectar a la base de datos
 my $dbh = DBI->connect("DBI:MariaDB:database=permisos;host=db", "root", "contrasena", {'RaiseError' => 1});
 
-# Verificar si el usuario ya existe
 my $sth = $dbh->prepare("SELECT COUNT(*) FROM usuarios WHERE nombre = ? OR correo = ?");
 $sth->execute($username, $email);
 my ($count) = $sth->fetchrow_array();

@@ -60,6 +60,10 @@ RUN chmod -R 755 /var/www/html
 # Exponer el puerto 80
 EXPOSE 80
 
+# Instalar librerías adicionales después de los pasos anteriores
+RUN cpanm Crypt::Eksblowfish && \
+    cpanm Bytes::Random::Secure
+
 # Iniciar Apache en primer plano
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 
