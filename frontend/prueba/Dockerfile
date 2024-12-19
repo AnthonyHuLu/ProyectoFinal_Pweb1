@@ -1,4 +1,3 @@
-# Usa la imagen base de Debian
 FROM debian:latest
 
 # Establece el directorio de trabajo
