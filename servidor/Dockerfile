@@ -38,7 +38,6 @@ RUN mkdir -p /usr/lib/cgi-bin/ /var/www/html/ /usr/src/app/images/
 
 # Copiar archivos al contenedor
 COPY ./cgi-bin/ /usr/lib/cgi-bin/
-COPY ./www/ /var/www/html/
 COPY ./images/ /usr/src/app/images/
 COPY ./apache2.conf /etc/apache2/apache2.conf
 COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
