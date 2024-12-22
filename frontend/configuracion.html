@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuración de Cuenta y Opciones para Mascotas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Configuración de Cuenta y Opciones para Mascotas</h1>
+    <div class="container">
+        <div class="configuracion">
+            <h2>Configuración de Cuenta</h2>
+            <form id="userForm">
+                <input type="hidden" id="user_id" name="user_id">
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+                <label for="correo">Correo:</label><br>
+                <input type="email" id="correo" name="correo" required><br><br>
+                <label for="direccion">Dirección:</label><br>
+                <input type="text" id="direccion" name="direccion" required><br><br>
+                <label for="metodo_pago">Método de Pago:</label><br>
+                <input type="text" id="metodo_pago" name="metodo_pago" required><br><br>
+                <label for="edad">Edad:</label><br>
+                <input type="number" id="edad" name="edad" required><br><br>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+        <div class="opciones">
+            <h2>Opciones para Mascotas</h2>
+            <div id="noMascotas">
+                <p>No tienes ninguna mascota registrada.</p>
+                <a href="registro_mascota.html">
+                    <button>Registrar Mascota</button>
+                </a>
+                <a href="adopcion.html">
+                    <button>Adoptar Mascota</button>
+                </a>
+            </div>
+            <div id="unaMascota" style="display: none;">
+                <h3>Perfil de Mascota</h3>
+                <p>Nombre: <span id="mascotaNombre">Rex</span></p>
+                <p>Tipo: <span id="mascotaTipo">Perro</span></p>
+                <p>Características: <span id="mascotaCaracteristicas">Juguetón, Leal</span></p>
+                <div class="mascota-fotos">
+                    <img src="images/mascota1.jpg" alt="Foto de Rex">
+                    <img src="images/mascota2.jpg" alt="Foto de Rex">
+                </div>
+            </div>
+            <div id="variasMascotas" style="display: none;">
+                <h3>Mis Mascotas</h3>
+                <ul id="mascotasList"></ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const petId = urlParams.get('pet_id');
+            if (!userId) {
+                alert('ID de usuario no proporcionado.');
+                return;
+            }
+
+            fetch(`http://localhost:3000/api/user/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Rellenar información del usuario
+                    document.getElementById('user_id').value = data.user.id;
+                    document.getElementById('nombre').value = data.user.nombre;
+                    document.getElementById('correo').value = data.user.correo;
+                    document.getElementById('direccion').value = data.user.direccion;
+                    document.getElementById('metodo_pago').value = data.user.metodo_pago;
+                    document.getElementById('edad').value = data.user.edad;
+
+                    if (data.mascotas.length === 0) {
+                        document.getElementById('noMascotas').style.display = 'block';
+                        document.getElementById('unaMascota').style.display = 'none';
+                        document.getElementById('variasMascotas').style.display = 'none';
+                    } else if (data.mascotas.length === 1 || petId) {
+                        document.getElementById('noMascotas').style.display = 'none';
+                        document.getElementById('unaMascota').style.display = 'block';
+                        document.getElementById('variasMascotas').style.display = 'none';
+                        const mascota = petId ? data.mascotas.find(m => m.usuario_id == petId) : data.mascotas[0];
+                        // Rellenar información estática de la mascota
+                        document.getElementById('mascotaNombre').textContent = mascota.nombre;
+                        document.getElementById('mascotaTipo').textContent = mascota.tipo_mascota;
+                        document.getElementById('mascotaCaracteristicas').textContent = 'Juguetón, Leal';
+                        // Añadir más lógica para cargar las fotos de la mascota si es necesario
+                    } else {
+                        document.getElementById('noMascotas').style.display = 'none';
+                        document.getElementById('unaMascota').style.display = 'none';
+                        document.getElementById('variasMascotas').style.display = 'block';
+                        const mascotasList = document.getElementById('mascotasList');
+                        data.mascotas.forEach(mascota => {
+                            const li = document.createElement('li');
+                            li.textContent = mascota.nombre;
+                            li.onclick = () => {
+                                // Cargar perfil de la mascota seleccionada
+                                document.getElementById('unaMascota').style.display = 'block';
+                                document.getElementById('variasMascotas').style.display = 'none';
+                                document.getElementById('mascotaNombre').textContent = mascota.nombre;
+                                document.getElementById('mascotaTipo').textContent = mascota.tipo_mascota;
+                                document.getElementById('mascotaCaracteristicas').textContent = 'Juguetón, Leal'; // Cambiar a datos dinámicos si es necesario
+                            };
+                            mascotasList.appendChild(li);
+                        });
+                    }
+                } else {
+                    alert('Error al cargar los datos del usuario.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userId = document.getElementById('user_id').value;
+            const userData = {
+                nombre: document.getElementById('nombre').value,
+                correo: document.getElementById('correo').value,
+                direccion: document.getElementById('direccion').value,
+                metodo_pago: document.getElementById('metodo_pago').value,
+                edad: document.getElementById('edad').value
+            };
+
+            fetch(`http://localhost:3000/api/user/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Datos actualizados correctamente.');
+                } else {
+                    alert('Error al actualizar los datos: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
+

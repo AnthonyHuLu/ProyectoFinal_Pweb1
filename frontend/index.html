@@ -5,39 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎄✨ Pets ✨🎄</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="js/login.js"></script>
     <style>
         body {
-            margin: 0; /* Elimina el margen por defecto */
-            overflow-x: hidden; /* Elimina la barra de desplazamiento horizontal */
+            margin: 0;
+            overflow-x: hidden;
         }
 
         .menudearriba {
-            display: none; /* Oculta el menú por defecto */
-            flex-direction: column; /* Asegura que los elementos se apilen en columna */
-            position: absolute; /* Permite que el menú se superponga */
-            background-color: white; /* Fondo blanco para el menú */
-            width: 100%; /* Ancho completo */
-            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            background-color: white;
+            width: 100%;
+            z-index: 1000;
         }
 
         .menudearriba ul {
-            list-style-type: none; /* Elimina los puntos de la lista */
-            padding: 0; /* Elimina el padding */
-            margin: 0; /* Elimina el margen */
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
         .menudearriba li {
-            padding: 10px; /* Espaciado entre los elementos del menú */
+            padding: 10px;
         }
 
         .menu-icon {
-            cursor: pointer; /* Cambia el cursor al pasar sobre el icono del menú */
+            cursor: pointer;
         }
     </style>
 
 <script>
-        // Validación de coincidencia de contraseñas
         function validarFormulario(e) {
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm_password').value;
@@ -47,22 +47,18 @@
             }
         }
 
-        // Mostrar modal de registro
         function mostrarRegistro() {
             document.getElementById('registerModal').style.display = 'block';
         }
 
-        // Cerrar modal de registro
         function cerrarRegistro() {
             document.getElementById('registerModal').style.display = 'none';
         }
 
-        // Mostrar modal de inicio de sesión
         function mostrarLogin() {
             document.getElementById('loginModal').style.display = 'block';
         }
 
-        // Cerrar modal de inicio de sesión
         function cerrarLogin() {
             document.getElementById('loginModal').style.display = 'none';
         }
@@ -85,9 +81,8 @@
         <img src="images/logo2.jpg" alt="Zoom Logo" class="logo">
     </header>
 
-    <!-- Icono para mostrar/ocultar el menú -->
     <div class="menu-icon" id="menuToggle">
-        <i class="fas fa-bars"></i> <!-- Icono de menú -->
+        <i class="fas fa-bars"></i>
     </div>
 
     <nav class="menudearriba">
@@ -117,7 +112,6 @@
             <li><a href="iniciar_sesion.html"><i class="fas fa-shopping-cart"></i> Eventos</a></li>
             <li><a href="iniciar_sesion.html"><i class="fas fa-phone"></i> Contáctanos</a></li>
             
-            <!-- Barra de búsqueda -->
             <li>
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar...">
@@ -127,7 +121,6 @@
         </ul>
     </nav>
 
-    <!-- Presentación de Diapositivas -->
     <div class="slideshow-container">
         <div class="mySlides fade">
             <img src="images/dog.jpg" style="width:100%">
@@ -158,12 +151,10 @@
             <div class="subtext">OBTEN BENEFICIOS EXCLUSIVOS <br> Disfruta de Actividades y Charlas Informativas <br> No te lo pierdas!</div>
         </div>
 
-        <!-- Flechas de navegación -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
-    <!-- Sección de Productos -->
     <div class="productos-seccion">
         <h2>Vista previa, conoce mas sobre nuestras nuevas adquisiciones!</h2>
         <div class="productos-galeria">
@@ -172,25 +163,21 @@
                     <h2>secciòn de recomendados</h2>
                     <div class="carousel">
                         <div class="carousel-inner">
-                            <!-- Producto 1 -->
                             <div class="producto-item">
                                 <img src="images/collar_perro.jpg" alt="Producto 1">
                                 <p>collar pràctico</p>
                                 <p>$10.99</p>
                             </div>
-                            <!-- Producto 2 -->
                             <div class="producto-item">
                                 <img src="images/comida_perros.jpg" alt="Producto 2">
                                 <p>ricocan premium</p>
                                 <p>$12.99</p>
                             </div>
-                            <!-- Producto 3 -->
                             <div class="producto-item">
                                 <img src="images/comida_gatos.jpg" alt="Producto 3">
                                 <p>ricocat premium+</p>
                                 <p>$15.99</p>
                             </div>
-                            <!-- Producto 4 -->
                             <div class="producto-item">
                                 <img src="images/rascador_gato.jpg" alt="Producto 4">
                                 <p>rascador para gatos</p>
@@ -205,7 +192,7 @@
 
                         function showNext() {
                             currentIndex = (currentIndex + 1) % totalItems;
-                            const offset = -currentIndex * 50; // Mueve el carrusel
+                            const offset = -currentIndex * 50;
                             document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
                         }
 
@@ -218,7 +205,6 @@
         </div>
     </div>
     
-    <!-- Modales para Registro e Iniciar Sesión -->
 <div class="modal" id="registerModal">
     <div class="modal-content">
         <span class="close" id="closeRegister">&times;</span>
@@ -244,35 +230,34 @@
     </div>
 </div>
 
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close" id="closeLogin">&times;</span>
-            <h2>Iniciar Sesión</h2>
-            <label for="loginUser">Usuario:</label><br>
-            <input type="text" id="loginUser" name="loginUser"><br><br>
-            <label for="loginPassword">Contraseña:</label><br>
-            <input type="password" id="loginPassword" name="loginPassword"><br><br>
-            <button class="button" id="loginSubmit">Iniciar Sesión</button>
-            <button class="button" id="cancelLogin">Cancelar</button>
-        </div>
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close" id="closeLogin">&times;</span>
+        <h2>Iniciar Sesión</h2>
+        <label for="loginUser">Usuario:</label><br>
+        <input type="text" id="loginUser" name="loginUser"><br><br>
+        <label for="loginPassword">Contraseña:</label><br>
+        <input type="password" id="loginPassword" name="loginPassword"><br><br>
+        <button class="button" id="loginSubmit">Iniciar Sesión</button>
+        <button class="button" id="cancelLogin">Cancelar</button>
     </div>
+</div>
+
+<script src="js/login.js"></script>
 
     <script>
-        // Mostrar el modal de registro
         document.getElementById('registerBtn').onclick = function() {
             document.body.classList.add('blur'); // Aplica el desenfoque al cuerpo
             document.getElementById('registerModal').style.display = 'flex';
             hideSlideshow(); // Oculta la presentación de diapositivas
         }
     
-        // Mostrar el modal de inicio de sesión
         document.getElementById('loginBtn').onclick = function() {
             document.body.classList.add('blur'); // Aplica el desenfoque al cuerpo
             document.getElementById('loginModal').style.display = 'flex';
             hideSlideshow(); // Oculta la presentación de diapositivas
         }
     
-        // Cerrar el modal de registro
         document.getElementById('closeRegister').onclick = function() {
             document.body.classList.remove('blur'); // Remueve el desenfoque al cerrar
             document.getElementById('registerModal').style.display = 'none';
@@ -284,7 +269,6 @@
             showSlideshow(); // Muestra nuevamente la presentación de diapositivas
         }
     
-        // Cerrar el modal de inicio de sesión
         document.getElementById('closeLogin').onclick = function() {
             document.body.classList.remove('blur'); // Remueve el desenfoque al cerrar
             document.getElementById('loginModal').style.display = 'none';
@@ -296,7 +280,6 @@
             showSlideshow(); // Muestra nuevamente la presentación de diapositivas
         }
 
-        // Función para ocultar la presentación de diapositivas
         function hideSlideshow() {
             const slides = document.querySelectorAll('.mySlides');
             slides.forEach(slide => {
@@ -304,7 +287,6 @@
             });
         }
 
-        // Función para mostrar la presentación de diapositivas
         function showSlideshow() {
             const slides = document.querySelectorAll('.mySlides');
             slides.forEach(slide => {
@@ -312,7 +294,6 @@
             });
         }
 
-        // Mostrar/ocultar el menú
         document.getElementById('menuToggle').onclick = function() {
             const menu = document.querySelector('.menudearriba');
             if (menu.style.display === 'none' || menu.style.display === '') {

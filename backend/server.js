@@ -1,38 +1,53 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = 3000;
 
 app.use(cors());
-app.use(express.json()); // Habilitar JSON body parsing
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(cookieParser()); // Agrega este middleware
 
-const db = mysql.createConnection({
-  host: 'db', // Nombre del servicio del contenedor MariaDB en Docker Compose
+const dbPrincipal = mysql.createConnection({
+  host: 'db',
   user: 'root',
   password: 'contrasena',
   database: 'principal'
 });
 
-db.connect((err) => {
+dbPrincipal.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err);
     return;
   }
-  console.log('Connected to the database.');
+  console.log('Connected to the principal database.');
 });
 
-// Incluir el archivo de rutas de registro de mascota
-const registroMascotaRoute = require('./routes/registro_mascota'); 
-app.use('/registro_mascota', registroMascotaRoute); // Usar la ruta para manejar las solicitudes
+// Ruta para manejar el registro de mascotas
+const registroMascotaRoute = require('./routes/registro_mascota');
+app.use('/registro_mascota', registroMascotaRoute);
 
-// Rutas de la API...
+// Ruta para el inicio de sesión
+const loginRoute = require('./routes/login');
+app.use('/api/login', loginRoute);
 
-// Ruta para obtener productos
+// Ruta para manejar los datos del usuario
+const userRoute = require('./routes/user');
+app.use('/api/user', userRoute);
+
+// Ruta para manejar el cierre de sesión
+const logoutRoute = require('./routes/logout');
+app.use('/api/logout', logoutRoute);
+
+// Otras rutas de la API...
+
 app.get('/api/productos', (req, res) => {
   const query = 'SELECT * FROM productos';
-  db.query(query, (err, results) => {
+  dbPrincipal.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching products:', err);
       res.status(500).send('Internal Server Error');
@@ -42,10 +57,9 @@ app.get('/api/productos', (req, res) => {
   });
 });
 
-// Ruta para obtener publicaciones
 app.get('/api/publicaciones', (req, res) => {
   const query = 'SELECT * FROM publicaciones';
-  db.query(query, (err, results) => {
+  dbPrincipal.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching publications:', err);
       res.status(500).send('Internal Server Error');
@@ -55,10 +69,9 @@ app.get('/api/publicaciones', (req, res) => {
   });
 });
 
-// Ruta para obtener perfiles
 app.get('/api/perfiles', (req, res) => {
   const query = 'SELECT * FROM perfiles';
-  db.query(query, (err, results) => {
+  dbPrincipal.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching profiles:', err);
       res.status(500).send('Internal Server Error');
@@ -68,10 +81,9 @@ app.get('/api/perfiles', (req, res) => {
   });
 });
 
-// Ruta para obtener fotos
 app.get('/api/fotos', (req, res) => {
   const query = 'SELECT * FROM fotos';
-  db.query(query, (err, results) => {
+  dbPrincipal.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching photos:', err);
       res.status(500).send('Internal Server Error');
@@ -80,6 +92,7 @@ app.get('/api/fotos', (req, res) => {
     res.json(results);
   });
 });
+
 
 // Ruta para obtener likes de foros
 app.get('/api/likes_foros', (req, res) => {

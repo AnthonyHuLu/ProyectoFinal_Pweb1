@@ -20,6 +20,14 @@ CREATE TABLE mascotas (
     FOREIGN KEY (duenio_id) REFERENCES usuarios(id)
 );
 
+CREATE TABLE sessions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  token VARCHAR(64) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES usuarios(id)
+);
+
 INSERT INTO usuarios (nombre, correo, hash_password, rol) VALUES
 ('Admin', 'admin@empresa.com', 'superadmin', 'admin'),
 ('Lucas', 'lucas@empresa.com', 'personallucas', 'personal'),
