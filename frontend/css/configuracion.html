@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuración de Cuenta</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Configuración de Cuenta</h1>
+    <div class="container">
+        <div class="configuracion">
+            <h2>Datos del Usuario</h2>
+            <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+            <p><strong>Correo:</strong> <span id="correo"></span></p>
+            <p><strong>Rol:</strong> <span id="rol"></span></p>
+        </div>
+    </div>
+
+    <!-- Botón para cerrar sesión -->
+    <div class="session-buttons">
+        <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+
+    <script>
+        // Función para obtener todas las cookies y mostrarlas en la consola
+        function mostrarCookies() {
+            const cookies = document.cookie.split(';');
+            cookies.forEach(cookie => {
+                console.log(`Cookie: ${cookie.trim()}`);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            if (!userId) {
+                alert('ID de usuario no proporcionado.');
+                return;
+            }
+
+            mostrarCookies();  // Mostrar cookies en la consola
+
+            console.log(`Solicitando datos para el usuario con ID: ${userId}`);
+            fetch(`http://localhost:3000/api/user/${userId}`, {
+                method: 'GET',
+                credentials: 'include' // Incluye credenciales (cookies)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Datos recibidos:', data);
+                if (data.success) {
+                    document.getElementById('nombre').textContent = data.user.nombre;
+                    document.getElementById('correo').textContent = data.user.correo;
+                    document.getElementById('rol').textContent = data.user.rol;
+                } else {
+                    alert('Error al cargar los datos del usuario.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function cerrarSesion() {
+            fetch('http://localhost:3000/api/logout', {
+                method: 'POST',
+                credentials: 'include' // Incluye credenciales (cookies)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Sesión cerrada correctamente.');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Error al cerrar sesión: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
+

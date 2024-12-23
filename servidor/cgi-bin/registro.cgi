@@ -17,11 +17,48 @@ my $confirm_password = $cgi->param('confirm_password') || '';
 my $role = $cgi->param('role') || '';
 
 if ($password ne $confirm_password) {
-    print "<html><head><title>Error</title></head><body><p>Error: Las contraseñas no coinciden.</p></body></html>";
+    print <<HTML;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="http://localhost:8080/css/style_nuevo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Error</h1>
+        <p class="lead">Las contraseñas no coinciden.</p>
+        <button class="btn btn-primary" onclick="window.history.back()">Volver</button>
+    </div>
+</body>
+</html>
+HTML
     exit;
 }
+
 if ($email !~ /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) {
-    print "<html><head><title>Error</title></head><body><p>Error: Formato de correo electrónico inválido.</p></body></html>";
+    print <<HTML;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="http://localhost:8080/css/style_nuevo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Error</h1>
+        <p class="lead">Formato de correo electrónico inválido.</p>
+        <button class="btn btn-primary" onclick="window.history.back()">Volver</button>
+    </div>
+</body>
+</html>
+HTML
     exit;
 }
 
@@ -34,7 +71,25 @@ my $sth = $dbh->prepare("SELECT COUNT(*) FROM usuarios WHERE nombre = ? OR corre
 $sth->execute($username, $email);
 my ($count) = $sth->fetchrow_array();
 if ($count > 0) {
-    print "<html><head><title>Error</title></head><body><p>Error: El nombre de usuario o correo ya está en uso.</p></body></html>";
+    print <<HTML;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="http://localhost:8080/css/style_nuevo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Error</h1>
+        <p class="lead">El nombre de usuario o correo ya está en uso.</p>
+        <button class="btn btn-primary" onclick="window.history.back()">Volver</button>
+    </div>
+</body>
+</html>
+HTML
     exit;
 }
 
@@ -54,50 +109,44 @@ system("/usr/lib/cgi-bin/enviar_correo.cgi");
 $sth->finish();
 $dbh->disconnect();
 
-# Respuesta de éxito con la nueva estructura de la página
 print <<HTML;
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Registro Exitoso</title>
-    <style>
-        .container {
-            display: flex;
-        }
-        .configuracion, .opciones {
-            flex: 1;
-            padding: 20px;
-        }
-        .opciones {
-            border-left: 1px solid #ccc;
-        }
-    </style>
+    <link rel="stylesheet" href="http://localhost:8080/css/style_nuevo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Registro Exitoso</h1>
-    <div class="container">
-        <div class="configuracion">
+    <div class="container mt-5">
+        <h1 class="text-center">Registro Exitoso</h1>
+        <div class="configuracion mt-4">
             <h2>Configuración de Cuenta</h2>
             <form action="http://localhost:8000/cgi-bin/update_persona.cgi" method="post">
                 <input type="hidden" name="user_id" value="<!-- ID del usuario aquí -->">
-                <label for="direccion">Dirección:</label><br>
-                <input type="text" id="direccion" name="direccion" required><br><br>
-                <label for="metodo_pago">Método de Pago:</label><br>
-                <input type="text" id="metodo_pago" name="metodo_pago" required><br><br>
-                <label for="edad">Edad:</label><br>
-                <input type="number" id="edad" name="edad" required><br><br>
-                <button type="submit">Guardar Cambios</button>
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion" required>
+                </div>
+                <div class="form-group">
+                    <label for="metodo_pago">Método de Pago:</label>
+                    <input type="text" class="form-control" id="metodo_pago" name="metodo_pago" required>
+                </div>
+                <div class="form-group">
+                    <label for="edad">Edad:</label>
+                    <input type="number" class="form-control" id="edad" name="edad" required>
+                </div>
+                <button type="submit" class="btn btn-success">Guardar Cambios</button>
             </form>
         </div>
-        <div class="opciones">
+        <div class="opciones mt-4">
             <h2>Opciones para Mascotas</h2>
             <p>Ya tienes una mascota, regístrala para ser parte de nuestra comunidad y recibir promociones:</p>
-            <a href="http://localhost:8080/registro_mascota.html">
-                <button>Registrar Mascota</button>
-            </a>
-            <p>No tienes una mascota, adopta alguna de nuestra comunidad:</p>
-            <a href="http://localhost:8080/adopcion.html">
-                <button>Adoptar Mascota</button>
-            </a>
+            <a href="http://localhost:8080/registro_mascota.html" class="btn btn-primary">Registrar Mascota</a>
+            <p class="mt-3">No tienes una mascota, adopta alguna de nuestra comunidad:</p>
+            <a href="http://localhost:8080/adopcion.html" class="btn btn-secondary">Adoptar Mascota</a>
         </div>
     </div>
 </body>

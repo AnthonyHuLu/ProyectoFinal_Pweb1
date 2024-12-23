@@ -1,0 +1,534 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+/* Estilo para el encabezado */
+header {
+    background-color: black; /* Fondo negro */
+    padding: 20px; /* Espaciado interno */
+    display: flex; /* Usar flexbox para alinear elementos */
+    align-items: center; /* Centrar verticalmente */
+}
+
+/* Estilo para el logo */
+.logo {
+    height: 70px; /* Ajusta la altura del logo */
+    margin-right: 900px; /* Espacio a la derecha del logo */
+}
+
+/* Estilo para el menú superior menudearriba */
+.menudearriba {
+    position: fixed;
+    top: 50px; /* Ajusta según la altura del encabezado */
+    left: 0; /* Mueve el menú a la izquierda */
+    background-color: #ffffff; /* Fondo blanco */
+    width: 200px; /* Ancho del menú */
+    z-index: 1100;
+    display: none; /* Oculto por defecto */
+    flex-direction: column; /* Muestra los elementos en columna */
+    padding: 10px; /* Espaciado interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #ccc; /* Línea que separa */
+}
+
+/* Icono para mostrar/ocultar el menú */
+.menu-icon {
+    position: fixed;
+    top: 600px; /* Ajusta según sea necesario */
+    left: 20px; /* Espacio desde el borde izquierdo */
+    cursor: pointer;
+    font-size: 24px; /* Tamaño del icono */
+    color: black; /* Color del icono */
+    z-index: 1200; /* Asegúrate de que esté por encima del menú */
+}
+
+
+.menudearriba ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menudearriba ul li {
+    margin: 0 10px;
+}
+
+.menudearriba ul li a {
+    text-decoration: none;
+    color: #000; /* Color de los enlaces */
+    font-size: 14px;
+    padding: 5px 10px ;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.menudearriba ul li a:hover {
+    border: 1px solid #000; /* Subrayado al pasar el cursor */
+    border-radius: 3px;
+}
+
+nav {
+    position: fixed;
+    top: 0; /* Separación del nuevo menú superior */
+    right: 0;
+    background-color: #f8f9fa; /* Fondo */
+    width: auto;
+    z-index: 1000;
+    display: flex;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #ccc;
+}
+
+/* Comentario: Ajusta esta propiedad para cambiar la separación entre el menú principal y el superior */
+nav {
+    margin-top: 20px; /* Cambiar el valor aquí para ajustar la separación */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+nav ul li a:hover {
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+/* Estilos para el menú desplegable */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu > li {
+    position: relative;
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Estilo para las transiciones de los submenús */
+.submenu {
+    display: none; /* Oculta el submenú por defecto */
+    position: absolute;
+    background-color: white; /* Color de fondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    z-index: 1;
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 10px; /* Espacio entre el menú principal y el submenú */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición suave para la opacidad y visibilidad */
+    opacity: 0; /* Inicialmente invisible */
+    visibility: hidden; /* Evita que el submenú sea interactivo cuando está oculto */
+}
+
+.menu > li:hover .submenu {
+    display: block; /* Muestra el submenú al pasar el mouse */
+    opacity: 1; /* Hace visible el submenú */
+    visibility: visible; /* Permite la interacción con el submenú */
+}
+
+.submenu li {
+    display: block; /* Muestra cada elemento en bloque */
+    padding: 10px 15px; /* Mejora el espaciado interno */
+    transition: opacity 7s ease; /* Transición suave para la opacidad */
+}
+
+.submenu li a {
+    text-decoration: none; /* Sin subrayado */
+    color: black; /* Color del texto */
+    display: block; /* Hace que el área del enlace sea más grande */
+    transition: background-color 7s; /* Transición suave para el fondo */
+}
+
+.submenu li a:hover {
+    background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+    color: #333; /* Cambia el color del texto al pasar el mouse */
+}
+
+/* Estilo adicional para el primer elemento del submenú */
+.submenu li:first-child {
+    border-top-left-radius: 5px; /* Bordes redondeados en la parte superior */
+    border-top-right-radius: 5px;
+}
+
+/* Estilo adicional para el último elemento del submenú */
+.submenu li:last-child {
+    border-bottom-left-radius: 5px; /* Bordes redondeados en la parte inferior */
+    border-bottom-right-radius: 5px;
+}
+
+/* Estilos para el fondo borroso */
+/* Estilo para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(169, 169, 169, 0.8); /* Gris oscuro */
+
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2.5px); /* Aplica un desenfoque al fondo detrás del modal */
+}
+
+.modal-content {
+    background-color: white; /* Fondo del contenido del modal */
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: left;
+    filter: blur(0); /* Mantiene el contenido del modal nítido */
+}
+
+.modal-content.blur {
+    filter: blur(2px); /* Aplica desenfoque al contenido del modal */
+}
+
+.close {
+    cursor: pointer;
+    color: red;
+    float: right;
+}
+
+.hidden {
+    display: none; /* Clase para ocultar elementos */
+}
+
+/* Añadir un margen superior para evitar que el contenido se esconda detrás del menú */
+.content {
+    margin-top: 30px; /* Ajusta según la altura del menú */
+}
+
+/* Estilos del contenido */
+.contenido {
+    padding: 20px;
+}
+
+/* Estilos del slideshow */
+.slideshow-container {
+    position: relative;
+    margin: auto;
+    max-width: 90%;
+    height: 500px;
+    background-color: #333;
+    color: white;
+    overflow: hidden;
+}
+
+.mySlides {
+    display: none;
+    position: relative;
+    height: 100%;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+}
+
+.text-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+}
+
+.subtext, .subtext-left {
+    position: absolute;
+    bottom: 80px;
+    font-size: 18px;
+    color: white;
+    z-index: 1;
+}
+
+.subtext {
+    right: 20px;
+}
+
+.subtext-left {
+    left: 20px;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.btn-primary:hover {
+    background-color: #777;
+}
+
+.adopt-btn {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+}
+
+.event-btn {
+    position: absolute;
+    right: 20px;
+    top: 80px;
+}
+
+.slide-btn, .product-btn {
+    position: absolute;
+    bottom: 20px;
+}
+
+.slide-btn {
+    right: 20px;
+}
+
+.product-btn {
+    left: 20px;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    z-index: 2;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Transición más suave para las diapositivas */
+.fade {
+    animation-name: fade;
+    animation-duration: 2.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* Sección de Productos */
+.productos-seccion {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.productos-seccion h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.productos-galeria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.producto-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.producto-item img {
+    width: 100%;
+    height: auto;
+}
+
+/* Ocultar productos adicionales inicialmente */
+.producto-item.hidden {
+    display: none;
+}
+
+/* Página de Productos */
+.productos-pagina {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.productos-pagina h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.productos-pagina .filtros {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.productos-pagina .filtros h3 {
+    margin-bottom: 10px;
+}
+
+.productos-galeria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.producto-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.producto-item img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel {
+    margin-left: 40px;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.producto-item {
+    min-width: 50%; /* Dos recuadros por vista */
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+header {
+    background: url('background_image.jpg') no-repeat center center; /* Asegúrate de tener una imagen de fondo */
+    background-size: cover;
+    height: 50px; /* Altura del encabezado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: auto;
+}
+
+footer {
+    background-color: rgba(169, 169, 169, 0.8); /* Gris oscuro */
+ 
+    padding: 20px 0; 
+}
+
+.container {
+    width: 80%; 
+    margin: 0 auto; 
+}
+
+.row {
+    display: flex; 
+    justify-content: space-between; 
+}
+
+.col {
+    flex: 1; 
+    padding: 0 20px; 
+}
+
+ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+ul li {
+    margin: 5px 0; 
+}
+
+ul li a {
+    color: black; 
+    text-decoration: none; 
+}
+
+ul li a:hover {
+    text-decoration: underline; 
+}
+
+.social-media {
+    display: flex; 
+    justify-content: flex-end; 
+}
+
+.social-media li {
+    margin-left: 10px; 
+}
+
+.social-media li a {
+    color: black; 
+    font-size: 20px; 
+}

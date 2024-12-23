@@ -7,7 +7,7 @@ const db = mysql.createConnection({
   host: 'db',
   user: 'root',
   password: 'contrasena',
-  database: 'permisos' // Conectar a la base de datos 'permisos'
+  database: 'permisos'
 });
 
 db.connect((err) => {
@@ -18,12 +18,12 @@ db.connect((err) => {
   console.log('Connected to the permisos database.');
 });
 
-// Usar el middleware para verificar la sesión
-router.use(verifySession);
+router.use(verifySession);  // Aplicar el middleware de verificaci  n de sesi  n
 
-// Ruta para obtener los datos del usuario incluyendo sus mascotas
 router.get('/:id', (req, res) => {
   const userId = req.params.id;
+
+  console.log(`Obteniendo datos para el usuario con ID: ${userId}`);
 
   db.query('SELECT * FROM usuarios WHERE id = ?', [userId], (err, userResults) => {
     if (err) {
@@ -37,20 +37,14 @@ router.get('/:id', (req, res) => {
     }
 
     const user = userResults[0];
+    console.log('Datos del usuario:', user);
 
-    db.query('SELECT * FROM mascotas WHERE duenio_id = ?', [userId], (err, petResults) => {
-      if (err) {
-        console.error('Error en la consulta de mascotas:', err);
-        return res.json({ success: false, message: 'Error en la base de datos al obtener mascotas.' });
-      }
-
-      console.log('Datos del usuario:', user);
-      console.log('Mascotas del usuario:', petResults);
-
-      return res.json({ success: true, user, mascotas: petResults });
-    });
+    return res.json({ success: true, user });
   });
 });
 
 module.exports = router;
+
+
+
 

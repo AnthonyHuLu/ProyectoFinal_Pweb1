@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú de Personal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Bienvenido a la Empresa</h1>
+    <h2>Un día más de trabajo</h2>
+    <p>Estamos encantados de tenerte aquí. ¿Qué quieres hacer hoy?</p>
+    <div class="menu-options">
+        <button onclick="window.location.href='http://localhost:8080/agregar_producto.html'">Agregar Productos</button>
+        <button onclick="window.location.href='http://localhost:8080/pedidos.html'">Ver Pedidos</button>
+        <button onclick="window.location.href='http://localhost:8000/cgi-bin/ver_inventario.cgi'">Ver Inventario</button>
+        <button onclick="window.location.href='editar_perfil_personal.html'">Editar Perfil</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            if (!userId) {
+                alert('ID de usuario no proporcionado.');
+                return;
+            }
+
+            // Aquí puedes agregar lógica adicional si necesitas cargar datos específicos del personal
+        });
+    </script>
+</body>
+</html>
+

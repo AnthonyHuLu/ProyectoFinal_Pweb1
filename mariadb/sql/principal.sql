@@ -75,12 +75,12 @@ CREATE TABLE pedidos (
 INSERT INTO publicaciones (duenio_id, titulo, contenido) VALUES
 (4, 'Cómo Cuidar a los Perros', 'Aquí tienes algunos consejos para mantener a tu perro feliz y saludable...'),
 (5, '¿Pueden Convivir un Gato y un Conejo?', 'Muchas personas se preguntan si es posible que un gato y un conejo vivan juntos. Aquí te damos algunos consejos...'),
-(1, 'Mantenimiento de la Plataforma', 'Estamos realizando un mantenimiento programado de la plataforma para mejorar nuestros servicios. Gracias por tu paciencia.'),
-(2, 'Guía de Uso para el Personal', 'Aquí hay algunas directrices para el personal sobre cómo utilizar la plataforma de manera efectiva.');
+(1, 'Mantenimiento de la Plataforma', 'Estamos realizando un mantenimiento programado de la plataforma para mejorar nuestros servicios. Gracias por tu paciencia version2.'),
+(2, 'Guía de Uso para el Personal', 'Aquí hay algunas directrices para el personal sobre cómo utilizar la plataforma de manera efectiva carga el docker con down -v.');
 
 INSERT INTO perfiles (mascota_id, raza, caracteristicas, alergias, edad) VALUES
 (1, 'Labrador', 'Amigable y enérgico', 'Polen', 3),
-(2, 'Siames', 'Juguetón y vocal', 'Polvo', 2);
+(2, 'Siames', 'Juguetón y vocal es un perro', 'Polvo', 2);
 
 INSERT INTO fotos (mascota_id, ruta_foto, descripcion) VALUES
 (1, '/fotos/fido/foto1.jpg', 'Foto de Fido'),
@@ -92,13 +92,13 @@ INSERT INTO likes_foros (publicacion_id, duenio_id) VALUES
 
 INSERT INTO productos (nombre, descripcion, tipo, precio, stock, imagen_ruta) VALUES
 ('Collar para Perros', 'Collar ajustable para perros de tamaño mediano', 'Perro', 19.99, 50, '/images/collar_perro.jpg'),
-('Rascador para Gatos', 'Rascador de sisal para gatos', 'Gato', 29.99, 30, '/images/rascador_gato.jpg'),
+('Rascador para Gatos', 'Rascador de sisal para gatos funcional', 'Gato', 29.99, 30, '/images/rascador_gato.jpg'),
 ('Comedero de Plástico', 'Comedero resistente y duradero', 'General', 9.99, 100, '/images/comedero_plastico.jpg'),
 ('Peine para Gatos', 'Peine de acero inoxidable para gatos', 'Gato', 12.99, 40, '/images/peine_gato.jpg'),
 ('Ratoncito a Pilas', 'Juguete para gatos en forma de ratón a pilas', 'Gato', 14.99, 60, '/images/ratoncito_pilas.jpg'),
 ('Comida para Perros', 'Bolsa de 10 kg de comida para perros', 'Perro', 29.99, 80, '/images/comida_perros.jpg'),
 ('Jaula para Conejos', 'Jaula espaciosa y segura para conejos', 'Conejo', 59.99, 20, '/images/jaula_conejos.jpg'),
-('Comida para Gatos', 'Bolsa de 5 kg de comida para gatos', 'Gato', 24.99, 70, '/images/comida_gatos.jpg');
+('Comida para Gatos', 'Bolsa de 5 kg de comida para gatos era sin down', 'Gato', 24.99, 70, '/images/comida_gatos.jpg');
 
 INSERT INTO tipos_cliente (tipo) VALUES 
 ('Perro'), ('Gato'), ('Conejo'); 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nosotros</title>
+    <title>Foros</title>
     <link rel="stylesheet" href="css/style_nuevo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -63,37 +63,20 @@
         </div>
     </nav>
 
-    <!-- Contenido de Sobre Nosotros -->
+    <!-- Contenido de la Página de Foros -->
     <div class="container mt-5">
-        <div class="text-center mb-4">
-            <img src="images/sobre-nosotros.jpg" class="img-fluid rounded" alt="Sobre Nosotros">
+        <h1 class="text-center">Foros</h1>
+        <div class="filtros">
+            <h3>Filtrar por:</h3>
+            <select id="filtroForos" class="form-control" onchange="ordenarPublicaciones()">
+                <option value="todos">Todos</option>
+                <option value="fechaReciente">Más Recientes</option>
+                <option value="fechaAntigua">Más Antiguos</option>
+                <option value="aleatorio">Aleatorio</option>
+            </select>
         </div>
-        <h1 class="text-center">Sobre Nosotros</h1>
-        <p class="lead text-center">
-            Somos una empresa dedicada a servir entusiasmadamente a las personas que ven a sus mascotas como parte de su familia.
-            Nuestro objetivo es brindar un servicio exclusivo con el confort y amor que nuestros queridos amigos de cuatro patas merecen.
-        </p>
-        <hr>
-        <h2>Misión</h2>
-        <p>
-            Nuestra misión es mejorar la calidad de vida de las mascotas y sus dueños proporcionando productos y servicios de alta calidad.
-            Nos esforzamos por crear una comunidad donde tanto las mascotas como sus dueños puedan encontrar todo lo que necesitan.
-        </p>
-        <h2>Visión</h2>
-        <p>
-            Aspiramos a ser la empresa líder en el cuidado integral de mascotas, reconocida por nuestra dedicación, innovación y compromiso
-            con el bienestar animal. Queremos ser la primera opción para todas las necesidades de las mascotas.
-        </p>
-        <h2>Valores</h2>
-        <ul>
-            <li><strong>Compromiso:</strong> Dedicados a brindar lo mejor para nuestras mascotas.</li>
-            <li><strong>Innovación:</strong> Siempre buscando nuevas formas de mejorar la vida de las mascotas.</li>
-            <li><strong>Calidad:</strong> Productos y servicios de la más alta calidad.</li>
-            <li><strong>Comunidad:</strong> Fomentar una comunidad unida por el amor a las mascotas.</li>
-        </ul>
-        <hr>
-        <div class="text-center">
-            <a href="index.html" class="btn btn-primary">Volver al Inicio</a>
+        <div class="row publicaciones-galeria mt-3">
+            <!-- Las publicaciones se cargarán dinámicamente aquí -->
         </div>
     </div>
 
@@ -123,6 +106,60 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('http://localhost:3000/api/publicaciones')
+                .then(response => response.json())
+                .then(data => {
+                    const publicacionesGaleria = document.querySelector('.publicaciones-galeria');
+                    publicacionesGaleria.innerHTML = ''; // Limpiar contenido anterior
+                    data.forEach(publicacion => {
+                        const publicacionDiv = document.createElement('div');
+                        publicacionDiv.classList.add('col-md-12', 'mb-4');
+                        publicacionDiv.innerHTML = `
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">${publicacion.titulo}</h5>
+                                    <p class="card-text">${publicacion.contenido}</p>
+                                    <p class="card-text"><small class="text-muted">Publicado el: ${new Date(publicacion.fecha_publicacion).toLocaleDateString()}</small></p>
+                                </div>
+                            </div>
+                        `;
+                        publicacionesGaleria.appendChild(publicacionDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching publications:', error);
+                    const publicacionesGaleria = document.querySelector('.publicaciones-galeria');
+                    publicacionesGaleria.innerHTML = '<p>Error al cargar las publicaciones.</p>';
+                });
+        });
+
+        function ordenarPublicaciones() {
+            const publicacionesGaleria = document.querySelector('.publicaciones-galeria');
+            const publicaciones = Array.from(publicacionesGaleria.children);
+            const filtro = document.getElementById('filtroForos').value;
+
+            if (filtro === 'aleatorio') {
+                publicaciones.sort(() => 0.5 - Math.random());
+            } else if (filtro === 'fechaReciente') {
+                publicaciones.sort((a, b) => {
+                    const fechaA = new Date(a.querySelector('.text-muted').textContent.replace('Publicado el: ', ''));
+                    const fechaB = new Date(b.querySelector('.text-muted').textContent.replace('Publicado el: ', ''));
+                    return fechaB - fechaA;
+                });
+            } else if (filtro === 'fechaAntigua') {
+                publicaciones.sort((a, b) => {
+                    const fechaA = new Date(a.querySelector('.text-muted').textContent.replace('Publicado el: ', ''));
+                    const fechaB = new Date(b.querySelector('.text-muted').textContent.replace('Publicado el: ', ''));
+                    return fechaA - fechaB;
+                });
+            }
+
+            publicacionesGaleria.innerHTML = '';
+            publicaciones.forEach(publicacion => publicacionesGaleria.appendChild(publicacion));
+        }
+    </script>
 </body>
 </html>
 

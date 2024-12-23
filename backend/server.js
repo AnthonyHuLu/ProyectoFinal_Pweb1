@@ -7,10 +7,13 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8080',
+  credentials: true
+}));
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cookieParser()); // Agrega este middleware
+app.use(cookieParser());
 
 const dbPrincipal = mysql.createConnection({
   host: 'db',
@@ -27,23 +30,17 @@ dbPrincipal.connect((err) => {
   console.log('Connected to the principal database.');
 });
 
-// Ruta para manejar el registro de mascotas
 const registroMascotaRoute = require('./routes/registro_mascota');
 app.use('/registro_mascota', registroMascotaRoute);
 
-// Ruta para el inicio de sesión
 const loginRoute = require('./routes/login');
 app.use('/api/login', loginRoute);
 
-// Ruta para manejar los datos del usuario
 const userRoute = require('./routes/user');
 app.use('/api/user', userRoute);
 
-// Ruta para manejar el cierre de sesión
 const logoutRoute = require('./routes/logout');
 app.use('/api/logout', logoutRoute);
-
-// Otras rutas de la API...
 
 app.get('/api/productos', (req, res) => {
   const query = 'SELECT * FROM productos';
@@ -93,8 +90,6 @@ app.get('/api/fotos', (req, res) => {
   });
 });
 
-
-// Ruta para obtener likes de foros
 app.get('/api/likes_foros', (req, res) => {
   const query = 'SELECT * FROM likes_foros';
   db.query(query, (err, results) => {
@@ -107,7 +102,6 @@ app.get('/api/likes_foros', (req, res) => {
   });
 });
 
-// Ruta para obtener tipos de cliente
 app.get('/api/tipos_cliente', (req, res) => {
   const query = 'SELECT * FROM tipos_cliente';
   db.query(query, (err, results) => {
@@ -120,7 +114,6 @@ app.get('/api/tipos_cliente', (req, res) => {
   });
 });
 
-// Ruta para obtener pedidos
 app.get('/api/pedidos', (req, res) => {
   const query = 'SELECT * FROM pedidos';
   db.query(query, (err, results) => {

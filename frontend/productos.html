@@ -4,55 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_nuevo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <!-- Menú Superior -->
-    <nav>
-        <ul class="menu">
-            <li class="left"><a href="index.html">Volver al Inicio</a></li>
-            <li class="right"><a href="productos.html">Ver Productos</a></li>
-            <li class="right"><a href="iniciar_sesion.html">Iniciar Sesión</a></li>
-        </ul>
+    <!-- Copos de nieve -->
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Wily Savy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="foro.html"><i class="fas fa-comments"></i> Foro</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-shopping-cart"></i> Tienda
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="productos.html">Productos</a>
+                            <a class="dropdown-item" href="adopcion.html">Adopta</a>
+                            <a class="dropdown-item" href="mantenimiento.html">Promos</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> Acceder
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <button class="dropdown-item" id="registerBtn">Registrarse</button>
+                            <button class="dropdown-item" id="loginBtn">Iniciar Sesión</button>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="mantenimiento.html"><i class="fas fa-shopping-cart"></i> Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="acerca-de.html"><i class="fas fa-phone"></i> Contáctanos</a></li>
+                    <li class="nav-item">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
     <!-- Contenido de la Página de Productos -->
-    <div class="productos-pagina">
-        <h1>Todos nuestros Productos</h1>
+    <div class="container mt-5">
+        <h1 class="text-center">Todos nuestros Productos</h1>
         <div class="filtros">
             <h3>Filtrar por:</h3>
-            <p>Esta sección mostrará filtros (no funcional por ahora)</p>
+            <select id="filtroProductos" class="form-control" onchange="desordenarProductos()">
+                <option value="todos">Todos</option>
+                <option value="precioAsc">Precio: Bajo a Alto</option>
+                <option value="precioDesc">Precio: Alto a Bajo</option>
+                <option value="aleatorio">Aleatorio</option>
+            </select>
         </div>
-        <div class="productos-galeria">
+        <div class="row productos-galeria mt-3">
             <!-- Los productos se cargarán dinámicamente aquí -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>&copy; 2024 WilySavy Group, Inc.</p>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-unstyled">
+                        <li><a href="acerca-de.html" class="text-white">¿Quiénes somos?</a></li>
+                        <li><a href="#" class="text-white">Políticas de Cookies</a></li>
+                        <li><a href="#" class="text-white">Ubicaciones y Sedes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-unstyled social-media">
+                        <li><a href="#" class="text-white"><i class="fab fa-facebook"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('http://localhost:3000/api/productos')
-            .then(response => response.json())
-            .then(data => {
-                const productosGaleria = document.querySelector('.productos-galeria');
-                productosGaleria.innerHTML = ''; // Limpiar contenido anterior
-                data.forEach(producto => {
-                    const productoDiv = document.createElement('div');
-                    productoDiv.classList.add('producto');
-                    productoDiv.innerHTML = `
-                        <h2>${producto.nombre}</h2>
-                        <p>Precio: $${producto.precio}</p>
-                        <img src="${producto.imagen_ruta}" alt="${producto.nombre}">
-                    `;
-                    productosGaleria.appendChild(productoDiv);
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('http://localhost:3000/api/productos')
+                .then(response => response.json())
+                .then(data => {
+                    const productosGaleria = document.querySelector('.productos-galeria');
+                    productosGaleria.innerHTML = ''; // Limpiar contenido anterior
+                    data.forEach(producto => {
+                        const productoDiv = document.createElement('div');
+                        productoDiv.classList.add('col-md-4', 'mb-4');
+                        productoDiv.innerHTML = `
+                            <div class="card h-100">
+                                <img src="${producto.imagen_ruta}" class="card-img-top" alt="${producto.nombre}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${producto.nombre}</h5>
+                                    <p class="card-text">Precio: $${producto.precio}</p>
+                                </div>
+                            </div>
+                        `;
+                        productosGaleria.appendChild(productoDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching products:', error);
+                    const productosGaleria = document.querySelector('.productos-galeria');
+                    productosGaleria.innerHTML = '<p>Error al cargar los productos.</p>';
                 });
-            })
-            .catch(error => {
-                console.error('Error fetching products:', error);
-                const productosGaleria = document.querySelector('.productos-galeria');
-                productosGaleria.innerHTML = '<p>Error al cargar los productos.</p>';
-            });
-    });
-</script>
+        });
+
+        function desordenarProductos() {
+            const productosGaleria = document.querySelector('.productos-galeria');
+            const productos = Array.from(productosGaleria.children);
+            const filtro = document.getElementById('filtroProductos').value;
+            
+            if (filtro === 'aleatorio') {
+                productos.sort(() => 0.5 - Math.random());
+            } else if (filtro === 'precioAsc') {
+                productos.sort((a, b) => {
+                    const precioA = parseFloat(a.querySelector('.card-text').textContent.replace('Precio: $', ''));
+                    const precioB = parseFloat(b.querySelector('.card-text').textContent.replace('Precio: $', ''));
+                    return precioA - precioB;
+                });
+            } else if (filtro === 'precioDesc') {
+                productos.sort((a, b) => {
+                    const precioA = parseFloat(a.querySelector('.card-text').textContent.replace('Precio: $', ''));
+                    const precioB = parseFloat(b.querySelector('.card-text').textContent.replace('Precio: $', ''));
+                    return precioB - precioA;
+                });
+            }
+
+            productosGaleria.innerHTML = '';
+            productos.forEach(producto => productosGaleria.appendChild(producto));
+        }
+    </script>
 </body>
 </html>
+

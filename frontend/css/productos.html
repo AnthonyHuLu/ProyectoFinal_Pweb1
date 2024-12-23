@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Menú Superior -->
+    <nav>
+        <ul class="menu">
+            <li class="left"><a href="index.html">Volver al Inicio</a></li>
+            <li class="right"><a href="productos.html">Ver Productos</a></li>
+            <li class="right"><a href="iniciar_sesion.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido de la Página de Productos -->
+    <div class="productos-pagina">
+        <h1>Todos nuestros Productos</h1>
+        <div class="filtros">
+            <h3>Filtrar por:</h3>
+            <p>Esta sección mostrará filtros (no funcional por ahora)</p>
+        </div>
+        <div class="productos-galeria">
+            <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('http://localhost:3000/api/productos')
+            .then(response => response.json())
+            .then(data => {
+                const productosGaleria = document.querySelector('.productos-galeria');
+                productosGaleria.innerHTML = ''; // Limpiar contenido anterior
+                data.forEach(producto => {
+                    const productoDiv = document.createElement('div');
+                    productoDiv.classList.add('producto');
+                    productoDiv.innerHTML = `
+                        <h2>${producto.nombre}</h2>
+                        <p>Precio: $${producto.precio}</p>
+                        <img src="${producto.imagen_ruta}" alt="${producto.nombre}">
+                    `;
+                    productosGaleria.appendChild(productoDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+                const productosGaleria = document.querySelector('.productos-galeria');
+                productosGaleria.innerHTML = '<p>Error al cargar los productos.</p>';
+            });
+    });
+</script>
+</body>
+</html>

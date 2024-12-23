@@ -1,0 +1,88 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #f0e68c, #ffa07a);
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333;
+    padding-bottom: 50px;
+}
+
+.header {
+    background-color: #007bff;
+    padding: 10px 0;
+    color: #fff;
+    text-align: center;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    color: #007bff;
+}
+
+.card-text {
+    color: #333;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer a {
+    color: #fff;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Efectos de copos de nieve */
+@keyframes snow {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.snowflake {
+    position: fixed;
+    top: -10px;
+    z-index: 9999;
+    font-size: 1.5em; /* Tamaño de los copos de nieve */
+    color: white;
+    user-select: none;
+    pointer-events: none;
+    animation: snow linear infinite;
+}
+
+.snowflake:nth-of-type(1) {left: 1%;animation-duration: 10s; animation-delay: -1s;}
+.snowflake:nth-of-type(2) {left: 10%;animation-duration: 12s; animation-delay: -2s;}
+.snowflake:nth-of-type(3) {left: 20%;animation-duration: 14s; animation-delay: -3s;}
+.snowflake:nth-of-type(4) {left: 30%;animation-duration: 16s; animation-delay: -4s;}
+.snowflake:nth-of-type(5) {left: 40%;animation-duration: 18s; animation-delay: -5s;}
+.snowflake:nth-of-type(6) {left: 50%;animation-duration: 20s; animation-delay: -6s;}
+.snowflake:nth-of-type(7) {left: 60%;animation-duration: 22s; animation-delay: -7s;}
+.snowflake:nth-of-type(8) {left: 70%;animation-duration: 24s; animation-delay: -8s;}
+.snowflake:nth-of-type(9) {left: 80%;animation-duration: 26s; animation-delay: -9s;}
+.snowflake:nth-of-type(10) {left: 90%;animation-duration: 28s; animation-delay: -10s;}
+
